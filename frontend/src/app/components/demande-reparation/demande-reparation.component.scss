@@ -1,0 +1,18 @@
+.full-width {
+  width: 60%;
+  min-height: 5rem;
+
+}
+
+textarea {
+  min-height: 6rem;
+}
+
+h1 {
+  color: rgb(112, 105, 105);
+  margin-left: 20%;
+}
+
+textarea:focus, input:focus {
+  color: #2b2828;
+}

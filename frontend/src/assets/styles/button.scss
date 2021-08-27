@@ -1,0 +1,28 @@
+.btn-primary, .btn-secondary {
+  border-radius: 2px;
+  transform: skew(-10deg);
+  border: transparent;
+  padding-inline: 25px;
+  font-weight: 600;
+  border: 2px solid transparent;
+}
+
+.btn-primary:hover {
+  border-color: transparent;
+}
+
+div{
+  .lateral-bar {
+    border-radius: 1px !important;
+    width: 10px !important;
+    margin-left: 5px !important;
+    transform: skew(-10deg) !important;
+  }
+}
+
+.btn-row {
+  margin: 4vh;
+  margin-inline: auto;
+  width: max-content;
+}
+

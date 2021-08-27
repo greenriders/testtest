@@ -1,0 +1,107 @@
+<div class="col-12 container-wrapper" *ngIf="client">
+  <form action="" class="justify-content-md-center" [formGroup]="clientForm">
+    <mat-form-field class="full-width">
+      <mat-label>Nom</mat-label>
+      <input
+        matInput
+        class="form-control"
+        type="text"
+        placeholder="Nom"
+        formControlName="nom"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Prénom</mat-label>
+      <input
+        matInput
+        class="form-control"
+        type="text"
+        placeholder="Prenom"
+        formControlName="prenom"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Télephone</mat-label>
+      <input
+        matInput
+        class="form-control"
+        type="text"
+        placeholder="telephone"
+        formControlName="telephone"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        class="form-control"
+        type="email"
+        placeholder="someone@gmail.com"
+        formControlName="email"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Adresse</mat-label>
+      <input
+        matInput
+        class="form-control"
+        type="text"
+        placeholder="Adresse"
+        formControlName="adresse"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Ville</mat-label>
+      <input
+        matInput
+        class="form-control"
+        type="text"
+        placeholder="Ville"
+        formControlName="ville"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>CodePostal</mat-label>
+      <input
+        matInput
+        class="form-control"
+        type="text"
+        placeholder="CodePostal"
+        formControlName="codePostal"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Pays</mat-label>
+      <input
+        matInput
+        class="form-control"
+        type="text"
+        placeholder="Pays"
+        formControlName="pays"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Distributeur</mat-label>
+      <mat-select formControlName="distributeurId" class="form-control">
+        <mat-option *ngFor="let a of distributeurs" [value]="a.id">
+          {{ a.nom }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
+    <div class="row btn-row btn-gr">
+      <button
+        (click)="updateClient()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Update
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>
+
+
+

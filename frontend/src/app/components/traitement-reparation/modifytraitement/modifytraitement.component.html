@@ -1,0 +1,89 @@
+<div class="col-12 container-wrapper" *ngIf="traitement">
+  <form
+    action=""
+    class="justify-content-md-center"
+    [formGroup]="traitementForm"
+  >
+    <!-- <mat-form-field class="full-width">
+            <mat-label>Anomalie</mat-label>
+            <mat-select formControlName="anomalieId">
+                <mat-option *ngFor="let a of anomalies" [value]="a.id">
+                    {{ a.nom }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field> -->
+
+    <mat-form-field class="full-width">
+      <mat-label>Date de prise en charge</mat-label>
+      <input
+        matInput
+        class="form-control"
+        type="date"
+        placeholder="Date de prise en charge"
+        formControlName="datePriseEnCharge"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Typology de la demande</mat-label>
+      <mat-select formControlName="typologie" class="form-control">
+        <mat-option [value]="'reparation'"> Reparation </mat-option>
+        <mat-option [value]="'devis'"> Devis </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Etat du produit</mat-label>
+      <mat-select formControlName="etatProduit" class="form-control">
+        <mat-option *ngFor="let t of etatproduits" [value]="t.id">
+          {{ t.etat }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Accessoires</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Accessoires"
+        formControlName="accessoires"
+      />
+    </mat-form-field>
+
+    <section>
+      <mat-checkbox class="chexkbox" formControlName="emballage"
+        >Emballage</mat-checkbox
+      >
+    </section>
+    <br />
+
+    <section>
+      <mat-checkbox class="chexkbox" formControlName="typeGarantie"
+        >Garantie</mat-checkbox
+      >
+    </section>
+
+    <mat-form-field class="full-width">
+      <mat-label>Techniciens</mat-label>
+      <mat-select formControlName="technicienId" class="form-control">
+        <mat-option *ngFor="let t of techniciens" [value]="t.id">
+          {{ t.nom }}
+        </mat-option>
+      </mat-select>
+      </mat-form-field
+    ><br />
+    <div class="row btn-row btn-gr pb-5">
+      <button
+        (click)="updateTraitement()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Update
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>

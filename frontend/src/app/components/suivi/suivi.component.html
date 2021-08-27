@@ -1,0 +1,52 @@
+<h3 class="title">VOS TROTTINETT ESÉLECTRIQUES</h3>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+ <mat-form-field>
+  <input  (input)= "applyFilter($event.target)" matInput placeholder="Filter">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z0 mb-5 suivi-table">
+
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="numeroRMA">
+    <th mat-header-cell *matHeaderCellDef> NuméroRMA </th>
+    <td mat-cell *matCellDef="let element"> {{element.numeroRMA}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Marque </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="client">
+    <th mat-header-cell *matHeaderCellDef> Client </th>
+    <td mat-cell *matCellDef="let element"> {{element.client}} </td>
+  </ng-container>
+
+  <!-- situation Column -->
+  <ng-container matColumnDef="situation">
+    <th mat-header-cell *matHeaderCellDef> situation </th>
+    <td mat-cell *matCellDef="let element"> {{element.situation}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef> Details </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button>
+      <!-- <a class="nav-item nav-link"  target="_blank" routerLinkActive="active">Get details</a> -->
+      <a [routerLink]="['/suivireparation']" target="_blank">Details</a>
+      </button> {{element.details}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr (click)="redirectDetails(row)" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+

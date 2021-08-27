@@ -1,0 +1,30 @@
+<div class="col-12 container-wrapper">
+  <form
+    action=""
+    class="justify-content-md-center"
+    [formGroup]="interventionForm"
+  >
+    <mat-form-field class="full-width">
+      <mat-label>Type</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Type"
+        formControlName="type"
+      />
+    </mat-form-field>
+
+    <div class="row btn-row btn-gr">
+      <button
+        (click)="updateIntervention()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Update
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>

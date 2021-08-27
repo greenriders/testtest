@@ -1,0 +1,29 @@
+.login-wrapper {
+
+    .mat-form-field-underline {
+        display: none !important;
+    }
+
+    .mat-card-header {
+        border: none;
+    }
+
+    .form-control {
+        border-bottom: solid 1px #fff !important;
+        border-left: solid 1px #fff !important;
+        border-right: solid 1px #fff !important;
+        border-top: none;
+        transform: skew(-10deg);
+    }
+
+    .mat-form-field-label {
+        color: #fff;
+    }
+    .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+        color: #f44336 !important;
+    }
+
+    .mat-form-field-label-wrapper {
+        left: 14px !important;
+    }
+}

@@ -1,0 +1,37 @@
+<div class="col-12 container-wrapper">
+  <form action="" class="justify-content-md-center" [formGroup]="transporteurForm">
+    <mat-form-field class="full-width">
+      <mat-label>Transporteur Nom</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Transporteur Nom"
+        formControlName="nom"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Le lien URL</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Le lien URL"
+        formControlName="urllink"
+      />
+    </mat-form-field>
+    <br />
+    <div class="row btn-row btn-gr">
+      <button
+        (click)="update()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Submit
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>
+

@@ -1,0 +1,78 @@
+<div class="col-12 container-wrapper">
+  <form action="" class="justify-content-md-center" [formGroup]="userForm">
+    <mat-form-field class="full-width">
+      <mat-label>Nom</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Nom"
+        formControlName="nom"
+      />
+      <mat-error *ngIf="checkerror('nom', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>prenom</mat-label>
+      <textarea
+        matInput
+        class="form-control"
+        placeholder="prenom"
+        formControlName="prenom"
+      ></textarea>
+      <mat-error *ngIf="checkerror('prenom', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Emial</mat-label>
+      <input
+        matInput
+        type="email"
+        class="form-control"
+        placeholder="someone@gmail.com"
+        formControlName="email"
+      />
+      <mat-error *ngIf="checkerror('email', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        class="form-control"
+        placeholder="password"
+        formControlName="password"
+      />
+      <mat-error *ngIf="checkerror('password', 'required')"
+        >This field is required</mat-error
+      > </mat-form-field
+    ><br />
+    <mat-form-field class="full-width">
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role" class="form-control">
+        <mat-option *ngFor="let role of rolesKeys" [value]="roles[role]">
+          {{ role }}
+        </mat-option>
+      </mat-select>
+
+      <mat-error *ngIf="checkerror('prenom', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <div class="row btn-row btn-gr">
+      <button
+        (click)="addUser(); clearInput()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Submit
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>

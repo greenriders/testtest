@@ -1,0 +1,31 @@
+<div class="col-12 container-wrapper">
+  <form
+    action=""
+    class="justify-content-md-center"
+    [formGroup]="anomalieCategoryForm"
+  >
+    <mat-form-field class="full-width">
+      <mat-label>Anomalie category</mat-label>
+      <input
+        matInput
+        class="form-control"
+        type="text"
+        placeholder="Anomalie Category"
+        formControlName="nom"
+      />
+      <mat-error *ngIf="checkerror('nom', 'required')">This field is required</mat-error>
+    </mat-form-field>
+    <br />
+    <div class="row btn-row btn-gr">
+      <button
+        (click)="add(); clearInput()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Submit
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>

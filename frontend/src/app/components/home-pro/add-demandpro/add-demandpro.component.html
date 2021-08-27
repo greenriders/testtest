@@ -1,0 +1,122 @@
+<div class="col-12 container-wrapper">
+  <form action="" class="justify-content-md-center" [formGroup]="demandeProForm">
+    <mat-form-field class="full-width">
+      <mat-label>Numéro de série</mat-label>
+      <input matInput type="text" class="form-control" placeholder="Numéro de série" formControlName="numeroSerie" />
+      <mat-error *ngIf="checkerror('numeroSerie', 'required')">This field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Marque</mat-label>
+      <mat-select formControlName="marqueId" class="form-control">
+        <mat-option *ngFor="let m of marques" [value]="m.id">
+          {{ m.nom }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="checkerror('marqueId', 'required')">This field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Sous-marque</mat-label>
+      <mat-select formControlName="modeleId" class="form-control">
+        <mat-option *ngFor="let m of modeles" [value]="m.id">
+          {{ m.nom }}
+        </mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="checkerror('modeleId', 'required')"
+        >This field is required</mat-error
+      > -->
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Modele</mat-label>
+      <mat-select formControlName="produitId" class="form-control">
+        <mat-option *ngFor="let p of produits" [value]="p.id">
+          {{ p.nom }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="checkerror('produitId', 'required')">This field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>accessoire</mat-label>
+      <input matInput type="text" class="form-control" placeholder="accessoire" formControlName="accessoire" />
+
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Date de la demande</mat-label>
+      <input matInput type="date" class="form-control" placeholder="Date de la demande" formControlName="dateDemande" />
+      <mat-error *ngIf="checkerror('dateDemande', 'required')">This field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Date d'achat</mat-label>
+      <input matInput type="date" class="form-control" placeholder="Date d'achat" formControlName="dateAchat" />
+      <mat-error *ngIf="checkerror('dateAchat', 'required')">This field is required</mat-error>
+    </mat-form-field>
+
+    <!-- <mat-form-field class="full-width">
+      <mat-label>Facture d'achat</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="facture d'Achat"
+        formControlName="factureAchat"
+      />
+      <!-- <mat-error *ngIf="checkerror('factureAchat', 'required')"
+        >This field is required</mat-error
+      > -->
+    <!-- </mat-form-field> -->
+
+    <mat-form-field class="full-width">
+      <mat-label>Nom du client(facultatif)</mat-label>
+      <textarea matInput class="form-control" placeholder="Nom de client" formControlName="clientNom"></textarea>
+      <!-- <mat-error *ngIf="checkerror('clientNom', 'required')"
+        >This field is required</mat-error
+      > -->
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>E-mail du client(facultatif)</mat-label>
+      <textarea matInput class="form-control" placeholder="E-mail de client" formControlName="clientEmail"></textarea>
+      <!-- <mat-error *ngIf="checkerror('clientEmail', 'required')"
+        >This field is required</mat-error
+      > -->
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Panne annoncé par le client</mat-label>
+      <textarea matInput class="form-control" placeholder="Panne annoncé par le client"
+        formControlName="panneClient"></textarea>
+      <mat-error *ngIf="checkerror('panneClient', 'required')">This field is required</mat-error>
+    </mat-form-field>
+      <div class="d-flex">
+        <div>
+          <label class="form-label">Upload votre facteur de achat :</label><br>
+          <input type="file" multiple placeholder="upload facteur" (change)="onFilesSelected($event)">
+        </div>
+
+        <div>
+          <label class="form-label">Upload images :</label><br>
+          <input type="file" multiple placeholder="upload facteur" (change)="onImagesSelected($event)">
+        </div>
+      </div>
+      <br>
+      <section>
+        <mat-checkbox class="chexkbox" formControlName="emballage">Emballage</mat-checkbox>
+      </section>
+
+      <br />
+      <div class="row btn-row btn-gr">
+        <button (click)="addDemandePro()" type="submit" [disabled]="!demandeProForm.valid" class="btn btn-primary mb-5">
+          Créer une demande
+        </button>
+        <div class="lateral-bar"></div>
+        <div class="lateral-bar"></div>
+      </div>
+  </form>
+</div>
+
+<!-- <input type="file" (change)="onFileSelected($event)"> -->
+<!-- <button type="button" (click)="onUpload()">Upload</button> -->

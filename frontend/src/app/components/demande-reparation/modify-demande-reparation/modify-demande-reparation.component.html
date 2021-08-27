@@ -1,0 +1,92 @@
+<div class="col-12 pb-5 container-wrapper" *ngIf="demande">
+  <form action="" class="justify-content-md-center" [formGroup]="demandeForm">
+    <mat-form-field class="full-width">
+      <mat-label>Numéro RMA</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="CodeRMA"
+        formControlName="numRMA"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Numéro de série</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Numéro de série"
+        formControlName="numeroSerie"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Modele</mat-label>
+      <mat-select formControlName="produitId" class="form-control">
+        <mat-option *ngFor="let p of produits" [value]="p.id">
+          {{ p.nom }}
+        </mat-option>
+
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Distributeur</mat-label>
+      <mat-select formControlName="distributeurId" class="form-control">
+        <mat-option *ngFor="let d of distributeurs" [value]="d.id">
+          {{ d.nom }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Client</mat-label>
+      <mat-select formControlName="clientId" class="form-control">
+        <mat-option *ngFor="let c of clients" [value]="c.id">
+          {{ c.nom }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Date de la demande</mat-label>
+      <input
+        matInput
+        type="date"
+        class="form-control"
+        placeholder="Date de la demande"
+        formControlName="dateDemande"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Date d'achat</mat-label>
+      <input
+        matInput
+        type="date"
+        class="form-control"
+        placeholder="Date d'achat"
+        formControlName="dateAchat"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Panne annoncépar le client</mat-label>
+      <textarea
+        matInput
+        class="form-control"
+        placeholder="Panne annoncé par le client"
+        formControlName="panneClient"
+      ></textarea>
+      </mat-form-field
+    ><br />
+    <div class="row btn-row btn-gr pb-5">
+      <button (click)="updateDemande()"
+        type="submit"
+        class="btn btn-primary">
+        Update
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>
+
+

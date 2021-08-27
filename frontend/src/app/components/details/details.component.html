@@ -1,0 +1,287 @@
+
+
+<section class="table-section" id="print-me">
+  <div class="container-fluid" *ngIf="demandeReparation" >
+    <h2>Fiche de diagnostique</h2>
+    <h4>INFORMATION DE LA DEMANDE</h4>
+    <div class="row">
+      <div class="col-6">
+        <table class="table border">
+          <tr let element>
+            <th >numeroRMA :</th>
+            <td>{{demandeReparation.numRMA}}</td>
+          </tr>
+          <tr>
+            <th>Date de demande :</th>
+            <td>{{demandeReparation.dateDemande}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-6">
+        <table class="table border">
+          <tr>
+            <th>Date d'achat : </th>
+            <td>{{demandeReparation.dateAchat}}</td>
+          </tr>
+          <tr>
+            <th>N° de facture :</th>
+            <td>  </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <h4>PRISE EN CHARGE</h4>
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table border">
+          <tr>
+            <th>Date de prise en charge :</th>
+            <td>{{demandeReparation.datePriseEnCharge}}</td>
+          </tr>
+          <tr>
+            <th>Nom Technicien :</th>
+            <td>{{demandeReparation.technicienId}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <h4>INFORMATION PRODUIT</h4>
+    <div class="row">
+      <div class="col-sm-6">
+        <table class="table border">
+          <tr>
+            <th>Marque :</th>
+            <td>{{demandeReparation.produit.marque.nom}}</td>
+          </tr>
+          <tr>
+            <th>Sous-marque</th>
+            <td>{{demandeReparation.produit.modele.nom}}</td>
+          </tr>
+          <tr>
+            <th>Modéle</th>
+            <td>{{demandeReparation.produit.nom}}</td>
+          </tr>
+          <tr>
+            <th>Numéro de série</th>
+            <td>{{demandeReparation.numeroSerie}}</td>
+          </tr>
+          <tr>
+            <th>Type de garantie</th>
+            <td>{{demandeReparation.typeGarantie}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-6">
+        <table class="table border">
+          <tr>
+            <th>Accessoires accompagnant :</th>
+            <td>{{demandeReparation.accessoires}}</td>
+          </tr>
+          <tr>
+            <th>Autres accessoires :</th>
+            <td>{{demandeReparation.accessoires}}</td>
+          </tr>
+          <tr>
+            <th>Emballage :</th>
+            <td>{{demandeReparation.emballage}}</td>
+          </tr>
+          <tr>
+            <th>Etat du produit :</th>
+            <td>{{demandeReparation.etatProduit}}</td>
+          </tr>
+          <tr>
+            <th>Type de demande</th>
+            <td>{{demandeReparation.dateDemande}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <h4>DISTRIBUTEUR</h4>
+    <div class="row">
+      <div class="col-sm-6">
+        <table class="table border">
+          <tr>
+            <th>Nom</th>
+            <td>{{demandeReparation.distributeur.nom}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-6">
+        <table class="table border">
+          <tr>
+            <th>Téléphone</th>
+            <td>{{demandeReparation.distributeur.telephone}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col-sm-12">
+        <table class="table border">
+          <tr>
+            <th>E-mail</th>
+            <td>{{demandeReparation.distributeur.email}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col-12">
+        <table class="table border">
+          <tr>
+            <th>Adresse</th>
+            <td>{{demandeReparation.distributeur.adresse}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col-sm-4">
+        <table class="table border">
+          <tr>
+            <th>Code Postal</th>
+            <td>{{demandeReparation.distributeur.codePostal}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-4">
+        <table class="table border">
+          <tr>
+            <th>Ville :</th>
+            <td>{{demandeReparation.distributeur.ville}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-4">
+        <table class="table border">
+          <tr>
+            <th>Pays :</th>
+            <td>{{demandeReparation.distributeur.pays}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <h4>CLIENT</h4>
+    <div class="row">
+      <div class="col-sm-6">
+        <table class="table border">
+          <tr>
+            <th>Nom :</th>
+            <td>{{demandeReparation.client.nom}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-6">
+        <table class="table border">
+          <tr>
+            <th>Prénom :</th>
+            <td>{{demandeReparation.client.prenom}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col-sm-6">
+        <table class="table border">
+          <tr>
+            <th>E-mail :</th>
+            <td>{{demandeReparation.client.email}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-6">
+        <table class="table border">
+          <tr>
+            <th>Téléphone :</th>
+            <td>{{demandeReparation.client.telephone}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col-12">
+        <table class="table border">
+          <tr>
+            <th>Adresse :</th>
+            <td>{{demandeReparation.client.adresse}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col-4">
+        <table class="table border">
+          <tr>
+            <th>Code postal :</th>
+            <td>{{demandeReparation.client.codePostal}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-4">
+        <table class="table border">
+          <tr>
+            <th>Ville :</th>
+            <td>{{demandeReparation.client.ville}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-4">
+        <table class="table border">
+          <tr>
+            <th>Pays :</th>
+            <td>{{demandeReparation.client.pays}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+      <h4>DIAGONISTIC</h4>
+      <div class="row">
+      <div class="col-sm-12">
+        <table class="table border">
+          <tr>
+            <th>Panne annoncée par le client :</th>
+            <td>{{demandeReparation.panneClient}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-12">
+        <table class="table border">
+          <tr>
+            <th>Anomalies</th>
+            <td>{{demandeReparation.demandeToAnomalie.anomalieId}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-12">
+        <table class="table border">
+          <tr>
+            <th>Interventions</th>
+            <td>{{demandeReparation.intervention.type}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-12">
+        <table class="table border">
+          <tr>
+            <th>Changements effectués</th>
+            <td>{{demandeReparation.changement.nom}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-12">
+        <table class="table border">
+          <tr>
+            <th>Note</th>
+            <td>{{demandeReparation.note}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+<div class="row btn-row btn-gr pb-5">
+<button class="btn btn-primary" [useExistingCss]="true" printSectionId="print-me" ngxPrint>
+  Print
+</button>
+</div>
+

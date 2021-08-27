@@ -1,0 +1,52 @@
+<div class="col-12 pb-5 container-wrapper" *ngIf="livraison">
+  <form
+    action=""
+    class="justify-content-md-center"
+    [formGroup]="livraisonForm"
+  >
+
+  <mat-form-field class="full-width">
+    <mat-label>Transporteur</mat-label>
+    <mat-select formControlName="transporteurId" class="form-control">
+      <mat-option *ngFor="let t of transporteurs" [value]="t.id">
+        {{ t.nom }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Duree Reparation</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Duree Reparation"
+        formControlName="dureeReparation"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Numero Tracking</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Numero Tracking"
+        formControlName="numeroTracking"
+      />
+    </mat-form-field>
+
+    <div class="row btn-row btn-gr">
+      <button
+        (click)="updateLivraison()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Update
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>
+

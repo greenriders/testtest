@@ -1,0 +1,121 @@
+<div class="col-12 container-wrapper">
+  <form
+    action=""
+    class="justify-content-md-center"
+    [formGroup]="distributeurForm"
+  >
+    <mat-form-field class="full-width">
+      <mat-label>Nom</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Nom"
+        formControlName="nom"
+      />
+      <mat-error *ngIf="checkerror('nom', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Adresse</mat-label>
+      <textarea
+        matInput
+        class="form-control"
+        placeholder="Adresse"
+        formControlName="adresse"
+      ></textarea>
+      <mat-error *ngIf="checkerror('adresse', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Ville</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Ville"
+        formControlName="ville"
+      />
+      <mat-error *ngIf="checkerror('ville', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Code postal</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Code postal"
+        formControlName="codePostal"
+      />
+      <mat-error *ngIf="checkerror('codePostal', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Téléphone</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Téléphone"
+        formControlName="telephone"
+      />
+      <mat-error *ngIf="checkerror('telephone', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>E-mail</mat-label>
+      <input
+        matInput
+        type="email"
+        class="form-control"
+        placeholder="someone@gmail.com"
+        formControlName="email"
+      />
+      <mat-error *ngIf="checkerror('email', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Pays</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Pays"
+        formControlName="pays"
+      />
+      <mat-error *ngIf="checkerror('pays', 'required')"
+        >This field is required</mat-error
+      > </mat-form-field
+    >
+    <mat-form-field class="full-width">
+      <mat-label>Owner Id</mat-label>
+      <mat-select formControlName="ownerId" class="form-control">
+        <mat-option *ngFor="let u of professionnels" [value]="u.id">
+          {{ u.nom }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="checkerror('ownerId', 'required')">This field is required</mat-error>
+    </mat-form-field>
+    <br />
+
+    <div class="row btn-row btn-gr pb-5">
+      <button
+        (click)="addDistributeur()"
+        (click)="clearInput()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Submit
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>

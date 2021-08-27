@@ -1,0 +1,84 @@
+<div *ngIf="user" class="row pt-5 container">
+  <div *ngIf="user.role == 'admin'" class="col-3 mt-5 mb-5">
+    <mat-card class="backcolor">
+      <mat-card-header>
+        <mat-card-subtitle>Demande réparation</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="ml-3">Veuillez saisir votre demande</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a
+          class="nav-item nav-link"
+          [routerLink]="['/demandereparation']"
+          routerLinkActive="active"
+          >Cliquez ici</a
+        >
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div *ngIf="user.role == 'admin'" class="col-3 mt-5 mb-5">
+    <mat-card class="backcolor">
+      <mat-card-header>
+        <mat-card-subtitle>Pré-diagnostic</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="ml-3">Veuillez Traiter votre demande </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <!-- <button mat-button>LIKE</button> -->
+
+        <a
+          class="nav-item nav-link"
+          [routerLink]="['/traitementreparation']"
+          routerLinkActive="active"
+          >Cliquez ici</a
+        >
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div *ngIf="user.role == 'admin' || user.role == 'technicien'" class="col-3 mt-5 mb-5">
+    <mat-card class="backcolor">
+      <mat-card-header>
+        <mat-card-subtitle>Diagnostic</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="ml-3">Veuillez  créez votre fiche reparation</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a
+          class="nav-item nav-link"
+          [routerLink]="['/fichereparation']"
+          routerLinkActive="active"
+          >Cliquez ici</a
+        >
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div *ngIf="user.role == 'admin'" class="col-3 mt-5 mb-5">
+    <mat-card class="backcolor">
+      <mat-card-header>
+        <mat-card-subtitle>Livraison</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="ml-3">Trouvez les information de livraison</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a
+          class="nav-item nav-link"
+          [routerLink]="['/livraison']"
+          routerLinkActive="active"
+          >Cliquez ici</a
+        >
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+<!-- <app-add-demande ></app-add-demande> -->
+<!-- <button (click)= "receiveMessage()" printSectionId="print-me" ngxPrint>Print</button> -->
+
+
+
+

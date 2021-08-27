@@ -1,0 +1,46 @@
+.table-wrapper {
+  width: 100%;
+  background: transparent;
+
+
+  .material-icons {
+    color: #fff;
+  }
+
+  .mat-header-cell {
+    color: #fff;
+    text-decoration: underline #fff 1px solid;
+    text-underline-position: under;
+    font-size: medium;
+    padding: 0px 10px;
+
+  }
+  .mat-cell {
+    color: #fff;
+    padding: 0px 10px;
+  }
+  .mat-cell {
+    border: none !important;
+
+  }
+
+  .mat-row:nth-child(odd) {
+    background: rgba(255, 253, 255, 0.1);
+  }
+  tr.mat-row {
+    height: 5px !important;
+  }
+}
+
+// .gutter {
+//   greater-than * {
+//       padding-right: $layout-gutter-width;
+//       ~ * {
+//           padding-left: $layout-gutter-width;
+//       }
+//       &:last-of-type {
+//           padding-right: 0;
+//       }
+//   }
+// }
+

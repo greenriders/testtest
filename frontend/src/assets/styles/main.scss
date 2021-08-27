@@ -1,0 +1,128 @@
+@import "_mixins";
+@import "form";
+@import "_colors";
+@import "button";
+@import "table";
+
+
+.site-bg {
+  color: white;
+  // height: 100%;
+}
+
+.site-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  nav {
+    a {
+      text-decoration: none;
+      font-size: 1.1rem;
+      color: inherit;
+    }
+
+  }
+
+  padding-top:10px;
+  margin-bottom: 40px;
+}
+
+.main-content{
+
+}
+
+//TODO RESPONSIVE
+.logo-wrapper {
+  width: 25%;
+
+  img {
+    width: 100%;
+  }
+}
+
+.client-logo-wrapper {
+  width: 10%;
+}
+
+.site-header {
+  flex-direction: row-reverse;
+}
+
+.site-header.has-client-logo {
+  flex-direction: row;
+}
+
+.mat-card {
+  color: #fff;
+  // box-shadow: 0px 2px 1px -1px rgba(255, 255, 255, 0.7), 0px 1px 1px 0px rgba(255, 255, 255, 0.34), 0px 1px 3px 0px rgba(255, 255, 255, 0.32) !important;
+  border: #fff solid 2px;
+  box-shadow: none !important;
+  font-size: 1.1rem;
+
+  .mat-card-header {
+    border-bottom: solid 1px #fff;
+    margin-bottom: 15px;
+  }
+  .mat-card-header-text{
+    margin:0;
+  }
+
+  .mat-card-content {
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  .mat-card-subtitle {
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.mat-typography{
+  background: rgb(1, 119, 143);
+  // background: linear-gradient(rgb(1, 119, 143) 42.64%, rgba(1, 119, 143, 0.847) 61.59%, rgba(1, 119, 143, 0.694) 72.01%, rgba(1, 119, 143, 0.494) 81.8%, rgba(1, 119, 143, 0) 100%);
+}
+
+.container-wrapper{
+
+  .form-control {
+    border-bottom: solid 1px #fff !important;
+    border-left: solid 1px #fff !important;
+    border-right: solid 1px #fff !important;
+    border-top: none;
+    transform: skew(-10deg);
+  }
+
+  .mat-form-field-underline {
+    display: none !important;
+  }
+  .mat-form-field-label {
+    color: #fff;
+  }
+  .mat-form-field-label-wrapper {
+    left: 14px !important;
+  }
+
+  mat-select{
+    background: transparent;
+  }
+
+  .mat-select-value{
+    color: #fff;
+  }
+
+}

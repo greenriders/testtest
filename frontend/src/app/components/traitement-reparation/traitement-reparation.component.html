@@ -1,0 +1,66 @@
+<div class="pt-5 pb-5">
+<table class="table-wrapper" mat-table [dataSource]="traitements">
+
+  <ng-container matColumnDef="numRMA">
+    <th mat-header-cell *matHeaderCellDef>numRMA</th>
+    <td mat-cell *matCellDef="let element">{{ element.numRMA }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="datePriseEnCharge">
+    <th mat-header-cell *matHeaderCellDef>Date Prise En Charge</th>
+    <td mat-cell *matCellDef="let element">{{ element.datePriseEnCharge }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="typologie">
+    <th mat-header-cell *matHeaderCellDef>Typologie</th>
+    <td mat-cell *matCellDef="let element">{{ element.typologie }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="typeGarantie">
+    <th mat-header-cell *matHeaderCellDef>Type Garantie</th>
+    <td mat-cell *matCellDef="let element">{{ element.typeGarantie }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="technicienId">
+    <th mat-header-cell *matHeaderCellDef>Technicien</th>
+    <td mat-cell *matCellDef="let element">{{ element.technicienId }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="etatProduitId">
+    <th mat-header-cell *matHeaderCellDef>Etats de Produits</th>
+    <td mat-cell *matCellDef="let element">{{ element.etatProduitId }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="accessoires">
+    <th mat-header-cell *matHeaderCellDef>Accessoires</th>
+    <td mat-cell *matCellDef="let element">{{ element.accessoires }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="emballage">
+    <th mat-header-cell *matHeaderCellDef>Emballage</th>
+    <td mat-cell *matCellDef="let element">{{ element.emballage }}</td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="modifier">
+    <th mat-header-cell *matHeaderCellDef>Modifier</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button [routerLink]="['/' , 'traitement' , element.id ,  'modify']" >
+        <span class="material-icons">create</span>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="effacer">
+    <th mat-header-cell *matHeaderCellDef>Delete</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button (click)="(element.id)">
+        <span class="material-icons">delete</span>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
+</table>
+</div>

@@ -1,0 +1,105 @@
+<div class="col-12 container-wrapper"   id= "print-me">
+  <form action="" class="justify-content-md-center" [formGroup]="demandeForm">
+
+    <mat-form-field class="full-width">
+      <mat-label>Numéro de série</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Numéro de série"
+        formControlName="numeroSerie"
+      />
+      <mat-error *ngIf="checkerror('numeroSerie', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Modele</mat-label>
+      <mat-select formControlName="produitId" class="form-control">
+        <mat-option *ngFor="let p of produits" [value]="p.id">
+          {{ p.nom }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="checkerror('produitId', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Distributeur</mat-label>
+      <mat-select formControlName="distributeurId" class="form-control">
+        <mat-option *ngFor="let d of distributeurs" [value]="d.id">
+          {{ d.nom }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="checkerror('distributeurId', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Client</mat-label>
+      <mat-select formControlName="clientId" class="form-control">
+        <mat-option *ngFor="let c of clients" [value]="c.id">
+          {{ c.nom }}
+        </mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="checkerror('clientId', 'required')"
+        >This field is required</mat-error
+      > -->
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Date de la demande</mat-label>
+      <input
+        matInput
+        type="date"
+        class="form-control"
+        placeholder="Date de la demande"
+        formControlName="dateDemande"
+      />
+      <mat-error *ngIf="checkerror('dateDemande', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Date d'achat</mat-label>
+      <input
+        matInput
+        type="date"
+        class="form-control"
+        placeholder="Date d'achat"
+        formControlName="dateAchat"
+      />
+      <mat-error *ngIf="checkerror('dateAchat', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Panne annoncé par le client client</mat-label>
+      <textarea
+        matInput
+        class="form-control"
+        placeholder="Panne annoncé par le client"
+        formControlName="panneClient"
+      ></textarea>
+      <mat-error *ngIf="checkerror('panneClient', 'required')"
+        >This field is required</mat-error
+      > </mat-form-field
+    ><br />
+    <div class="row btn-row btn-gr pb-5">
+      <button
+        (click)="addDemande(); clearInput();"
+        type="submit"
+        [disabled]="!demandeForm.valid"
+        class="btn btn-primary"
+      >
+        Créer une demande
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>
+
+<!-- sendMessage($event) -->

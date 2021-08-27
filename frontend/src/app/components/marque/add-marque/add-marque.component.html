@@ -1,0 +1,29 @@
+<div class="col-12 container-wrapper">
+  <form action="" class="justify-content-md-center" [formGroup]="marqueForm">
+    <mat-form-field class="full-width">
+      <mat-label>Marque</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Marque"
+        formControlName="nom"
+      />
+      <mat-error *ngIf="checkerror('nom', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <br />
+    <div class="row btn-row btn-gr">
+      <button
+        (click)="addMarque(); clearInput()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Submit
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>

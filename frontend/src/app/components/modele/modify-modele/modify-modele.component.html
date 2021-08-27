@@ -1,0 +1,34 @@
+<div class="col-12 container-wrapper">
+  <form action="" class="justify-content-md-center" [formGroup]="modeleForm">
+    <mat-form-field class="full-width">
+      <mat-label>Sous-marque</mat-label>
+      <input
+        matInput
+        class="form-control"
+        type="text"
+        placeholder="Sous-marque"
+        formControlName="nom"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Marques</mat-label>
+      <mat-select formControlName="marqueId" class="form-control">
+        <mat-option *ngFor="let m of marques" [value]="m.id">
+          {{ m.nom }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
+    <div class="row btn-row btn-gr">
+      <button
+        (click)="updateModele()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Update
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>

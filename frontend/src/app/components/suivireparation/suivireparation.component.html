@@ -1,0 +1,53 @@
+<div class="container mb-5 mt-5 ">
+  <div class="row">
+    <!-- <h1 class="title mt-5 mb-5">SUIVI DE REPARATION</h1> -->
+    <div class="col-xs-12 col-md-8 offset-md-2 block border  shadow">
+      <div class="mat-subheading-2">
+        <div class="wrapper-progressBar">
+          <ul class="progressBar">
+            <li class="active">reçu</li>
+            <li class="active">en reparation</li>
+            <li class="active">reparé</li>
+            <li class="">en livraison</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-8 offset-md-2 p-0 pt-5 center">
+      <table mat-table [dataSource]="transactions" class="mat-elevation-z0 transactions-table">
+
+        <ng-container matColumnDef="donnee">
+          <th mat-header-cell *matHeaderCellDef> Donnee </th>
+          <td mat-cell *matCellDef="let transaction"> {{transaction.donnee}} </td>
+          <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
+        </ng-container>
+
+
+        <ng-container matColumnDef="details">
+          <th mat-header-cell *matHeaderCellDef> Details </th>
+          <td mat-cell *matCellDef="let transaction">
+            {{transaction.details}}
+            <!-- {{transaction.codetailsst | currency}} -->
+          </td>
+          <td mat-footer-cell *matFooterCellDef>
+            <!-- {{getTotalCost() | currency}} -->
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr> -->
+      </table>
+
+      <br>
+      <button class="m-5" mat-raised-button>
+        <a [routerLink]="['/suivi']" class="button" routerLinkActive="active">Retourner à la liste</a>
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<h1></h1>

@@ -1,0 +1,26 @@
+.full-width {
+  width: 80%;
+  min-height: 5rem;
+
+}
+
+textarea {
+  min-height: 5rem;
+}
+
+// .con {
+//   margin-left: 20%;
+// }
+
+h1 {
+  color: rgb(112, 105, 105);
+  margin-left: 20%;
+}
+
+textarea:focus, input:focus {
+  color: #2b2828;
+}
+
+.chexkbox {
+  color: rgb(112, 105, 105);
+}

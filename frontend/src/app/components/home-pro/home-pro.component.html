@@ -1,0 +1,39 @@
+<div class="row pt-5 container">
+  <div class="col-3 mt-5 mb-5">
+    <mat-card class="backcolor">
+      <mat-card-header>
+        <mat-card-subtitle>Demande réparation</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="ml-3">Veuillez saisir votre demande</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a
+          class="nav-item nav-link"
+          [routerLink]="['/add-demandepro']"
+          routerLinkActive="active"
+          >Cliquez ici</a
+        >
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div class="col-3 mt-5 mb-5">
+    <mat-card class="backcolor">
+      <mat-card-header>
+        <mat-card-subtitle>Suivi</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="ml-3">Suivez le parcours de votre trottinette</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a
+          class="nav-item nav-link"
+          [routerLink]="['/suivi']"
+          routerLinkActive="active"
+          >Cliquez ici</a
+        >
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

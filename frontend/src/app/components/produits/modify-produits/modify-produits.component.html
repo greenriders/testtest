@@ -1,0 +1,90 @@
+<div class="col-12 container-wrapper">
+  <form action="" class="justify-content-md-center" [formGroup]="produitForm">
+    <mat-form-field class="full-width">
+      <mat-label>Nom</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Nom"
+        formControlName="nom"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Marque</mat-label>
+      <mat-select formControlName="marqueId" class="form-control">
+        <mat-option *ngFor="let m of marques" [value]="m.id">
+          {{ m.nom }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Sous-marque</mat-label>
+      <mat-select formControlName="modeleId" class="form-control">
+        <mat-option *ngFor="let d of modeles" [value]="d.id">
+          {{ d.nom }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Code EAN</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Code EAN"
+        formControlName="codeEAN"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Longueur(cm)</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Longueur"
+        formControlName="longueur"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Largeur(cm)</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Largeur"
+        formControlName="largeur"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Hauteur(cm)</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Hauteur"
+        formControlName="hauteur"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Poids(kg)</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Poids"
+        formControlName="poids"
+      />
+    </mat-form-field>
+    <br />
+    <div class="row btn-row btn-gr">
+      <button (click)="updateProduit()"
+      type="submit" class="btn btn-primary">
+        Submit
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>
+

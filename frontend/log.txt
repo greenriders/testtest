@@ -1,0 +1,22 @@
+
+> project@0.0.0 start C:\Users\nibal\Desktop\projet\greenridersnew\frontend-ng\project
+> ng serve
+
+- Generating browser application bundles...
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files   | Names         |      Size
+vendor.js             | vendor        |   4.45 MB
+styles.css, styles.js | styles        | 603.35 kB
+polyfills.js          | polyfills     | 472.85 kB
+main.js               | main          | 346.68 kB
+runtime.js            | runtime       |   6.15 kB
+
+| Initial Total |   5.85 MB
+
+Build at: 2021-03-11T19:21:52.802Z - Hash: 82baafb1853aac39aa3f - Time: 38176ms
+
+** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+
+
+√ Compiled successfully.

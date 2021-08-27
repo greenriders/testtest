@@ -1,0 +1,59 @@
+<div class="col-12 container-wrapper">
+  <form
+    action=""
+    class="justify-content-md-center"
+    [formGroup]="userForm"
+  >
+    <mat-form-field class="full-width">
+      <mat-label>Nom</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Nom"
+        formControlName="nom"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>prenom</mat-label>
+      <textarea
+        matInput
+        class="form-control"
+        placeholder="prenom"
+        formControlName="prenom"
+      ></textarea>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        class="form-control"
+        placeholder="someone@gmail.com"
+        formControlName="email"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        class="form-control"
+        placeholder="prenom"
+        formControlName="prenom"
+      /> </mat-form-field
+    ><br />
+    <div class="row btn-row btn-gr">
+      <button (click)="updateUser()"
+      [routerLink]="['/user']"
+      type="submit" class="btn btn-primary">
+        Update
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>
+
+
+

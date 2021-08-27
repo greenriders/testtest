@@ -1,0 +1,26 @@
+<div class="col-12 container-wrapper">
+  <form action="" class="justify-content-md-center" [formGroup]="marqueForm">
+    <mat-form-field class="full-width">
+      <mat-label>Marque</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Marque"
+        formControlName="nom"
+      />
+    </mat-form-field>
+    <br />
+    <div class="row btn-row btn-gr">
+      <button
+        (click)="updateMarque()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Submit
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>

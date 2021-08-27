@@ -1,0 +1,43 @@
+<div class="col-12 container-wrapper">
+  <form action="" class="justify-content-md-center" [formGroup]="transporteurForm">
+    <mat-form-field class="full-width">
+      <mat-label>Transporteur </mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Transporteur"
+        formControlName="nom"
+      />
+      <mat-error *ngIf="checkerror('nom', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Le lien URL</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Le lien URL"
+        formControlName="urllink"
+      />
+      <mat-error *ngIf="checkerror('nom', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <br />
+    <div class="row btn-row btn-gr">
+      <button
+        (click)="add(); clearInput()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Submit
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>
+

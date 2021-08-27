@@ -1,0 +1,29 @@
+<div class="col-12 container-wrapper">
+  <form action="" class="justify-content-md-center" [formGroup]="etatForm">
+    <mat-form-field class="full-width">
+      <mat-label>Etats de produits</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Etats de produits"
+        formControlName="etat"
+      />
+      <mat-error *ngIf="checkerror('etat', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <br />
+    <div class="row btn-row btn-gr">
+      <button
+        (click)="add(); clearInput()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Submit
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>

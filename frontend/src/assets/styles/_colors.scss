@@ -1,0 +1,23 @@
+// $accent:#009988 ;
+// $body-bg: white;
+// $body-color: #bbbbbb;
+// $alt-bg: #202020;
+// $alt-color: #f2f2f2;
+
+:root {
+  --clr-prim_gr: #01778f;
+  --clr-prim_rn: #ffce33;
+  --light: #f4fafb;
+  --dark: #241d08;
+  --spacing-s: 1em;
+  --spacing: 1.5em;
+  --ff-prim: "Poppins", sans-serif;
+}
+
+$dark:var(--dark);
+$light:var(--light);
+$blue:var(--clr-prim_gr);
+$yellow:var(--clr-prim_rn);
+
+$light-yellow: #ffcf332f;
+$clr-prim_gr: #01778f;

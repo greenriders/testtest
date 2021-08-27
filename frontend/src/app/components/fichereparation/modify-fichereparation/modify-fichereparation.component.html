@@ -1,0 +1,70 @@
+<div class="col-12 container-wrapper" *ngIf="fichereparation">
+  <form
+    action=""
+    class="justify-content-md-center"
+    [formGroup]="fichereparationForm"
+  >
+
+  <mat-form-field class="full-width">
+    <mat-label>Anomalie</mat-label>
+    <mat-select formControlName="anomaliesIds" class="form-control" multiple>
+      <mat-option *ngFor="let a of anomalies" [value]="a.id">
+        {{ a.nom }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Type intervention</mat-label>
+    <mat-select formControlName="interventionId" class="form-control">
+      <mat-option *ngFor="let t of interventions" [value]="t.id">
+        {{ t.type }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Changements effectués</mat-label>
+    <mat-select formControlName="changementId" class="form-control">
+      <mat-option *ngFor="let c of changements" [value]="c.id">
+        {{ c.nom }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+    <mat-form-field class="full-width">
+      <mat-label>Note</mat-label>
+      <textarea
+        matInput
+        class="form-control"
+        placeholder="Note"
+        formControlName="note"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Date de sortie de reparation</mat-label>
+      <input
+        matInput
+        type="date"
+        class="form-control"
+        placeholder="Dat de sortie de reparation"
+        formControlName="dateSortie"
+      />
+    </mat-form-field>
+
+    <div class="row btn-row btn-gr">
+      <button
+        (click)="updateFicheReparation()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Update
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>
+

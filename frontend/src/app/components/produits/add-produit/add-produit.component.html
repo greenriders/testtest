@@ -1,0 +1,116 @@
+<div class="col-12 container-wrapper">
+  <form action="" class="justify-content-md-center" [formGroup]="produitForm">
+    <mat-form-field class="full-width">
+      <mat-label>Nom</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Nom"
+        formControlName="nom"
+      />
+      <mat-error *ngIf="checkerror('nom', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Marque</mat-label>
+      <mat-select formControlName="marqueId" class="form-control">
+        <mat-option *ngFor="let m of marques" [value]="m.id">
+          {{ m.nom }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="checkerror('marqueId', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Sous-marque</mat-label>
+      <mat-select formControlName="modeleId" class="form-control">
+        <mat-option *ngFor="let d of modeles" [value]="d.id">
+          {{ d.nom }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="checkerror('modeleId', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Code EAN</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Code EAN"
+        formControlName="codeEAN"
+      />
+      <mat-error *ngIf="checkerror('codeEAN', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Longueur(cm)</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Longueur"
+        formControlName="longueur"
+      />
+      <mat-error *ngIf="checkerror('longueur', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Largeur(cm)</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Largeur"
+        formControlName="largeur"
+      />
+      <mat-error *ngIf="checkerror('largeur', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Hauteur(cm)</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Hauteur"
+        formControlName="hauteur"
+      />
+      <mat-error *ngIf="checkerror('hauteur', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Poids(kg)</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Poids"
+        formControlName="poids"
+      />
+      <mat-error *ngIf="checkerror('poids', 'required')"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <br />
+    <div class="row btn-row btn-gr">
+      <button
+        (click)="addProduit(); clearInput()"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Submit
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
+  </form>
+</div>
