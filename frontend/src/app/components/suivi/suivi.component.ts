@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { DemandereparationService } from 'src/app/services/demandereparation.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -10,54 +13,6 @@ export interface PeriodicElement {
   client: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Renault', numeroRMA: 'A5FZ255E1', situation: 'reparé', client: 'Gregory WORTH' },
-  { position: 2, name: 'Renault', numeroRMA: 'A5FZ255E2', situation: 'reparé', client: 'Everett MOONEY'},
-  {
-    position: 3,
-    name: 'Renault',
-    numeroRMA: 'A5FZ255E3',
-    situation: 'En attente de pièce',
-    client: 'Laura PETERSON'
-  },
-  {
-    position: 4,
-    name: 'Renault',
-    numeroRMA: 'A5FZ255E4',
-    situation: 'En attente de pièce',
-    client: 'Michael HAMPTON'
-  },
-  { position: 5, name: 'Renault', numeroRMA: 'A5FZ255E2', situation: 'reparé',client: 'Everett MOONEY' },
-  {
-    position: 6,
-    name: 'Renault',
-    numeroRMA: 'A5FZ255E5',
-    situation: 'En reparation',
-    client: 'Laura PETERSON'
-  },
-  { position: 7, name: 'Renault', numeroRMA: 'A5FZ255E2', situation: 'reparé',client: 'Gregory WORTH' },
-  {
-    position: 8,
-    name: 'Renault',
-    numeroRMA: 'A5FZ255E6',
-    situation: 'En attente de pièce',
-    client: 'Brian BAKER'
-  },
-  {
-    position: 9,
-    name: 'Renault',
-    numeroRMA: 'A5FZ255E7',
-    situation: 'En reparation',
-    client: 'Michael HAMPTON'
-  },
-  {
-    position: 10,
-    name: 'Renault',
-    numeroRMA: 'A5FZ255E8',
-    situation: 'reparé',
-    client: 'Laura PETERSON'
-  },
-];
 
 @Component({
   selector: 'app-suivi',
@@ -66,12 +21,46 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class SuiviComponent implements OnInit {
   displayedColumns: string[] = ['position', 'numeroRMA', 'name', 'client', 'situation'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource: any;
+  demandes: any[] = [];
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  @ViewChild(MatSort)
+  sort!: MatSort;
 
-  applyFilter(filterValue: any) {
-    //console.log(filterValue);
-    this.dataSource.filter = filterValue.value.trim().toLowerCase();
+
+  constructor(
+    private router: Router,
+    private demandeService: DemandereparationService
+  ) { }
+
+  ngOnInit(): void {
+    //this.dataSource.filterPredicate = this.filterPredicate;
+
+    this.demandeService.getDistributeurDemande().subscribe((demandes) => {
+      console.log(demandes);
+      this.demandes = demandes
+      this.dataSource = new MatTableDataSource(demandes);
+      if (this.dataSource) {
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    });
   }
+
+
+
+  applyFilter(event: Event) {
+    //console.log(filterValue);
+    if (this.dataSource) {
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
 
   filterPredicate(data: PeriodicElement, filter: string): boolean {
     if (filter == '') return true;
@@ -79,18 +68,6 @@ export class SuiviComponent implements OnInit {
     return true;
   }
 
-  constructor(
-    private router: Router,
-    private demandeService: DemandereparationService
-  ) {}
-
-  ngOnInit(): void {
-    this.dataSource.filterPredicate = this.filterPredicate;
-
-    this.demandeService.getDistributeurDemande().subscribe((demandes) => {
-      console.log(demandes);
-    });
-  }
   redirectDetails(row: any) {
     console.log(row);
     this.router.navigate(['/suivireparation']);
