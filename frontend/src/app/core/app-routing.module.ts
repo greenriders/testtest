@@ -83,7 +83,7 @@ const routes: Routes = [
   { path: 'partenaires', component: PartenairesComponent },
   { path: 'donnees', component: DonneesComponent },
   { path: 'statistiques', component: StatistiquesComponent },
-  { path: 'suivireparation', component: SuivireparationComponent },
+  { path: 'suivireparation/:id', component: SuivireparationComponent },
 
   { path: 'demandereparation', component: DemandeReparationComponent, canActivate: [AuthGuard], data: { roles: [UserRole.Admin ] } },
   { path: 'add-demande', component: AddDemandeComponent },

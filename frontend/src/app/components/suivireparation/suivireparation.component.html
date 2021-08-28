@@ -5,10 +5,10 @@
       <div class="mat-subheading-2">
         <div class="wrapper-progressBar">
           <ul class="progressBar">
-            <li class="active">reçu</li>
-            <li class="active">en reparation</li>
-            <li class="active">reparé</li>
-            <li class="">en livraison</li>
+            <li [ngClass]="{'active': getDemandeStatus()>=1}">reçu</li>
+            <li [ngClass]="{'active':getDemandeStatus()>=2}">en reparation</li>
+            <li [ngClass]="{'active':getDemandeStatus()>=3}">reparé</li>
+            <li [ngClass]="{'active': getDemandeStatus()>=4}">en livraison</li>
           </ul>
         </div>
       </div>

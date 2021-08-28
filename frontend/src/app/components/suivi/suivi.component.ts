@@ -69,7 +69,6 @@ export class SuiviComponent implements OnInit {
   }
 
   redirectDetails(row: any) {
-    console.log(row);
-    this.router.navigate(['/suivireparation']);
+    this.router.navigate([`/suivireparation/${row.id}`]);
   }
 }
