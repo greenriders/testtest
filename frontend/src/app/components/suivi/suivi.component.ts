@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { DemandereparationService } from 'src/app/services/demandereparation.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { AuthService } from 'src/app/services/auth.service';
+import { User, UserRole } from 'src/app/entities/user';
 
 export interface PeriodicElement {
   name: string;
@@ -31,21 +33,35 @@ export class SuiviComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private demandeService: DemandereparationService
+    private demandeService: DemandereparationService,
+    private authService: AuthService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     //this.dataSource.filterPredicate = this.filterPredicate;
-
-    this.demandeService.getDistributeurDemande().subscribe((demandes) => {
-      console.log(demandes);
-      this.demandes = demandes
-      this.dataSource = new MatTableDataSource(demandes);
-      if (this.dataSource) {
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      }
-    });
+    const user: User = await this.authService.getUser();
+    if (user.role === UserRole.Client) {
+      this.demandeService.getByClient(user.email).subscribe((demandes) => {
+        console.log(demandes);
+        this.demandes = demandes
+        this.dataSource = new MatTableDataSource(demandes);
+        if (this.dataSource) {
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+      });
+    }
+    else {
+      this.demandeService.getDistributeurDemande().subscribe((demandes) => {
+        console.log(demandes);
+        this.demandes = demandes
+        this.dataSource = new MatTableDataSource(demandes);
+        if (this.dataSource) {
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+      });
+    }
   }
 
 

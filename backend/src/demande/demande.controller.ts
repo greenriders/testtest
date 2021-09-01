@@ -29,8 +29,24 @@ import { diskStorage } from 'multer';
 import { extname } from 'path'
 import { ImagesService } from 'src/images/images.service';
 import { BillService } from 'src/bill/bill.service';
+import { ClientService } from 'src/client/client.service';
+import { v4 as uuidv4 } from 'uuid';
+import path = require('path');
+import { Observable, of } from 'rxjs';
+import { join } from 'path';
 
+export const storage = {
+  storage: diskStorage({
+    destination: './files',
+    filename: (req, file, cb) => {
+      const filename: string = path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
+      const extension: string = path.parse(file.originalname).ext;
 
+      cb(null, `${filename}${extension}`)
+    }
+  })
+
+}
 
 export const editFileName = (req, file, callback) => {
   const name = file.originalname.split('.')[0];
@@ -42,6 +58,7 @@ export const editFileName = (req, file, callback) => {
   callback(null, `${name}-${randomName}${fileExtName}`);
 };
 
+
 @Controller('demande')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class DemandeController {
@@ -52,7 +69,8 @@ export class DemandeController {
     private mailService: MailService,
     private produitService: ProduitService,
     private imagesService: ImagesService,
-    private billService: BillService
+    private billService: BillService,
+    private clientService: ClientService
   ) { }
 
   // get distributeur demandes
@@ -96,6 +114,12 @@ export class DemandeController {
     return this.service.getById(id);
   }
 
+  @Get('/client/:email')
+  async getByClientId(@Param('email') email: string): Promise<Demande[]> {
+    const client = await this.clientService.findByEmail(email);
+    return this.service.getByClientId({ clientId: client.id });
+  }
+
   // @Get('paginated')
   // async index(
   //   @Query('page') page : number = 1,
@@ -108,7 +132,6 @@ export class DemandeController {
 
   private async createDemande(payload: Partial<Demande>) {
     let createdDemande = await this.service.create(payload);
-    console.log(createdDemande)
     let demande = await this.service.getById(createdDemande.id);
     console.log(demande)
 
@@ -146,12 +169,7 @@ export class DemandeController {
   @UseInterceptors(FileFieldsInterceptor([
     { name: 'images' },
     { name: 'bill' },
-  ], {
-    storage: diskStorage({
-      destination: './files',
-      filename: editFileName,
-    }),
-  }))
+  ], storage))
   async createProfessionnel(
     @Body() payload: Partial<Demande>,
     @Request() req,
@@ -170,13 +188,14 @@ export class DemandeController {
     payload.createdById = user.id;
     payload.distributeurId = distributeur.id;
 
-
+    const client = await this.clientService.findByEmail(payload.clientEmail);
+    payload.client = client;
     console.log("payload.distributeurId ", payload.distributeurId)
     let demande = await this.createDemande(payload);
     console.log("demande", demande)
-
     //upload images
     files.images?.forEach(image => {
+      console.log(image)
       this.imagesService.create({ path: `${image.filename}`, demande: demande });
     });
 
@@ -184,20 +203,17 @@ export class DemandeController {
     files.bill?.forEach(bill => {
       this.billService.create({ path: `${bill.filename}`, demande: demande });
     });
-    
+
     // notify
     this.mailService.demandeRecieved(demande.distributeur.email, demande);
     console.log("distributeur.email", demande.distributeur.email);
-    const r = await this.imagesService.getByDemandeId(197);
-    console.log('rrrrrrrrrrrrr',r)
     return demande;
   }
 
-  @Get(':imgPath')
-  seeUploadedFile(@Param('imgPath') image, @Res() res) {
-    return res.sendFile(image, { root: './files' });
+  @Get('image/:imgName')
+  findImage(@Param('imgName') imgName, @Res() res): Observable<Object> {
+    return of(res.sendFile(join(process.cwd(), './files/' + imgName)));
   }
-
   // @Post('upload')
   // @UseInterceptors(FileInterceptor('file', { dest: './files',
   // storage: diskStorage({

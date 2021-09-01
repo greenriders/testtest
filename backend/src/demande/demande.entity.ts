@@ -17,7 +17,7 @@ export class Demande {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({default: ''})
+    @Column({ default: '' })
     numRMA: string;
 
     @Column()
@@ -30,7 +30,7 @@ export class Demande {
     produitId: number;
 
 
-    @ManyToOne(type => Distributeur, distributeur => distributeur.demandes , {eager : true, onDelete: "CASCADE"})
+    @ManyToOne(type => Distributeur, distributeur => distributeur.demandes, { eager: true, onDelete: "CASCADE" })
     distributeur: Distributeur;
 
     @Column({ nullable: true })
@@ -125,7 +125,7 @@ export class Demande {
     @Column({ nullable: true })
     note: string;
 
-    @Column({ type: 'date', nullable: true, default: null  })
+    @Column({ type: 'date', nullable: true, default: null })
     dateSortie: Date;
 
     // livraison
@@ -141,24 +141,24 @@ export class Demande {
     @Column({ nullable: true })
     numeroTracking: string;
     demande: Promise<DemandeToAnomalie[]>;
-    
-    @Column({ type: 'double' , default : 0})
+
+    @Column({ type: 'double', default: 0 })
     facture: number;
 
 
     @ManyToOne(type => User, user => user.createdDemandes)
     createdBy: User;
 
-    @Column({nullable : true , default : null})
+    @Column({ nullable: true, default: null })
     createdById: number;
 
-    @Column({default:''})
+    @Column({ default: '' })
     uploadFacture: string;
 
-    @Column({default:''})
+    @Column({ default: '' })
     clientNom: string;
 
-    @Column({default:''})
+    @Column({ default: '' })
     clientEmail: string;
 
     @OneToMany(() => Image, image => image.id)

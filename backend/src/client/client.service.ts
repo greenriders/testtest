@@ -36,4 +36,12 @@ export class ClientService {
   deleteClient(id: number): Promise<DeleteResult> {
     return this.repository.delete(id);
   }
+
+  async findByEmail(email: string): Promise<Client> {
+    return  this.repository.findOne({
+      where: {
+        email: email,
+      },
+    });
+  }
 }

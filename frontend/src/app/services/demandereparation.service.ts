@@ -65,31 +65,44 @@ export class DemandereparationService {
       .pipe(map((e: any) => ({ ...e, anomaliesIds: e.demandeToAnomalie?.map((d: any) => d.anomalieId) }))) //to add all anomalies array (choose anomalie id)
   }
 
+  public getByClient(email: string): Observable<any> {
+    return this.HttpClient.get(this.api + '/client/' + email)
+      .pipe(map(data => data));
+  }
+
+
   public addDemandereparation(demande: demandeReparations): Observable<any> {
     return this.HttpClient.post(this.api, demande);
   }
 
   public addDemandePro(demande: demandeReparations): Observable<any> {
 
-    var formData = new FormData();
-    Object.keys(demande).forEach(key => {
+    const formData = new FormData();
+
+    Object.keys(demande).forEach((key) => {
       if (key === 'images') {
-        demande.images?.forEach(item =>
+        demande.images?.forEach((item: any) =>
           formData.append('images', item)
         );
       }
       else if (key === 'bill') {
-        demande.bill?.forEach(item =>
+        demande.bill?.forEach((item: any) =>
           formData.append('bill', item)
         );
+      } else {
+        formData.append(key, this.getFormDataField(demande[key as keyof typeof demande]));
       }
-      else {
-        formData.append(key, JSON.stringify(demande[key as keyof typeof demande]))
-      }
-    });
+    }); 
+
     return this.http.post(`${this.api}/create-professionnel`, formData);
   }
 
+  getFormDataField(fieldValue: any) {
+    if(typeof fieldValue === 'string') {
+      return fieldValue;
+    }
+    return fieldValue;
+  }
 
   public update(
     id: string,

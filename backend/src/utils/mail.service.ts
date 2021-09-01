@@ -25,7 +25,7 @@ export class MailService {
     demandeRecieved(email:string , demande:Demande){
         
         return this.mailerService.sendMail({
-            from: 'Greenriders <17zrami@gmail.com>',  
+            from: 'Greenriders <greenridersnewtest@outlook.com>',  
             to: email, 
             subject: "Demande De Réperation Reçu", 
             text: "", 

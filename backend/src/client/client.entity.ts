@@ -1,5 +1,5 @@
 import { Distributeur } from './../distributeur/distributeur.entity';
-import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn, RelationId, JoinColumn, OneToMany } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn,OneToMany } from "typeorm";
 import { Demande } from 'src/demande/demande.entity';
 
 

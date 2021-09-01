@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { User } from '../entities/user';
+import { User, UserRole } from '../entities/user';
 import { AuthService } from '../services/auth.service';
 import { ClientStyle, LayoutService } from '../services/layout.service';
 
@@ -12,19 +11,17 @@ import { ClientStyle, LayoutService } from '../services/layout.service';
 })
 export class AppComponent implements OnInit {
 
-  private roles: string[] = [];
   isLoggedIn = false;
   username?: string;
   background: string = "red";
   isClient = true;
   style: ClientStyle;
-  user?:User;
+  user?: User;
   // showAdminBoard = false;
   // showModeratorBoard = false;
 
 
-  constructor(private authService: AuthService, private layoutService: LayoutService,
-              private formBuilder: FormBuilder) {
+  constructor(private authService: AuthService, private layoutService: LayoutService) {
     this.style = layoutService.getStyle();
   }
 
@@ -46,5 +43,9 @@ export class AppComponent implements OnInit {
   logout(): void {
     this.authService.signOut();
     window.location.href = "/login";
+  }
+
+  isClientUser() {
+    return this.user?.role === UserRole.Client;
   }
 }

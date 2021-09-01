@@ -1,17 +1,17 @@
-export interface User{
+export interface User {
   id: number,
   nom: string,
   prenom: string,
   email: string,
   password: string,
-  code:string,
-  role:UserRole
+  code: string,
+  role: UserRole
 }
 export enum UserRole {
-  Admin = 'admin' ,
-  Professionnel = 'professionnel' , // Rhono
+  Admin = 'admin',
+  Professionnel = 'professionnel', // Rhono
   Particulier = 'particulier',
   Technicien = 'technicien',
-  Invité = 'invité'
-
+  Invité = 'invité',
+  Client = 'client'
 }

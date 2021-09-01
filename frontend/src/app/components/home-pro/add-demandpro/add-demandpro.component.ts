@@ -1,15 +1,17 @@
+import { Component, OnInit } from '@angular/core';
 import { Marque } from './../../../entities/marque';
 import { ModeleService } from './../../../services/modele.service';
 import { MarqueService } from './../../../services/marque.service';
+import { AuthService } from './../../../services/auth.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Component, Injectable, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { demandeReparations } from 'src/app/entities/demands';
 import { Produit } from 'src/app/entities/produit';
 import { DemandereparationService } from 'src/app/services/demandereparation.service';
 import { ProduitService } from 'src/app/services/produit.service';
 import { Modele } from 'src/app/entities/modele';
+import { User } from 'src/app/entities/user';
 
 @Component({
   selector: 'app-add-demandpro',
@@ -52,7 +54,8 @@ export class AddDemandproComponent implements OnInit {
   onFilesSelected(event: any) {
     for (var i = 0; i < event.target.files.length; i++) {
       this.selectedFiles.push(event.target.files[i]);
-    }  }
+    }
+  }
 
   selectedImages: File[] = [];
   onImagesSelected(event: any) {
@@ -74,6 +77,7 @@ export class AddDemandproComponent implements OnInit {
     private _produitService: ProduitService,
     private httpClient: HttpClient,
     private router: Router,
+    private authService: AuthService
     // private httpClient = HttpClient,
   ) { }
 
@@ -109,8 +113,10 @@ export class AddDemandproComponent implements OnInit {
     }
     if (this.posting) return false;
     this.posting = true;
-
-    const demande: demandeReparations = { ...this.demandeProForm.value, bill: this.selectedFiles, images: this.selectedImages };
+    const user: User = await this.authService.getUser();
+    const demande: demandeReparations = {
+      ...this.demandeProForm.value, clientEmail: user.email, bill: this.selectedFiles, images: this.selectedImages
+    };
     try {
       await this._demandereparationService
         .addDemandePro(demande)

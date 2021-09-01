@@ -10,9 +10,10 @@ import { DistributeurModule } from 'src/distributeur/distributeur.module';
 import { ProduitModule } from 'src/produit/produit.module';
 import { ImagesModule } from 'src/images/images.module';
 import { BillsModule } from 'src/bill/bill.module';
+import { ClientModule } from 'src/client/client.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Demande, DemandeToAnomalie]), UtilsModule, ImagesModule, BillsModule, DistributeurModule, ProduitModule, AnomalieModule],
+  imports: [TypeOrmModule.forFeature([Demande, DemandeToAnomalie]), ClientModule, UtilsModule, ImagesModule, BillsModule, DistributeurModule, ProduitModule, AnomalieModule],
   controllers: [DemandeController],
   providers: [DemandeService]
 })

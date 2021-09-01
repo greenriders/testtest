@@ -45,7 +45,7 @@ export interface demandeReparations {
   clientEmail: string,
 
   distributeur?: Distributeur,
-  client?: Client,
+  client: Client,
   intervention?: Intervention,
   changement?: Changement,
   produit?: Produit,
