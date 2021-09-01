@@ -9,7 +9,7 @@ export class Etatproduit {
     @Column()
     etat: string;
 
-    @OneToMany(type => Demande, demande => demande.changement)
+    @OneToMany(type => Demande, demande => demande.etatProduit)
     demandes: Demande[];
 
 }

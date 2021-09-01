@@ -4,14 +4,13 @@ import { ModeleService } from './../../../services/modele.service';
 import { MarqueService } from './../../../services/marque.service';
 import { AuthService } from './../../../services/auth.service';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { demandeReparations } from 'src/app/entities/demands';
-import { Produit } from 'src/app/entities/produit';
 import { DemandereparationService } from 'src/app/services/demandereparation.service';
-import { ProduitService } from 'src/app/services/produit.service';
 import { Modele } from 'src/app/entities/modele';
 import { User } from 'src/app/entities/user';
+import { SousMarque } from 'src/app/entities/sous-marque';
+import { SousMarqueService } from 'src/app/services/sous-marque.service';
 
 @Component({
   selector: 'app-add-demandpro',
@@ -26,6 +25,7 @@ export class AddDemandproComponent implements OnInit {
     numeroSerie: new FormControl(null, [Validators.required]),
     marqueId: new FormControl(null, [Validators.required]),
     modeleId: new FormControl(''),
+    sousMarqueId: new FormControl(null, [Validators.required]),
     produitId: new FormControl(null, [Validators.required]),
     accessoire: new FormControl(''),
     dateDemande: new FormControl(null, [Validators.required]),
@@ -67,41 +67,21 @@ export class AddDemandproComponent implements OnInit {
 
   marques: Marque[] = [];
   modeles: Modele[] = [];
-  produits: Produit[] = [];
-
+  sousMarque: SousMarque[] = [];
 
   constructor(
     private _demandereparationService: DemandereparationService,
     private marqueService: MarqueService,
     private modeleService: ModeleService,
-    private _produitService: ProduitService,
-    private httpClient: HttpClient,
+    private sousMarqueService: SousMarqueService,
     private router: Router,
     private authService: AuthService
-    // private httpClient = HttpClient,
   ) { }
 
   ngOnInit(): void {
-    this._produitService.getProduit().subscribe((data: any[]) => {
-      this.produits = data;
-    });
-
     this.marqueService.getMarque().subscribe((data: any[]) => {
       this.marques = data
     })
-
-    this.modeleService.getModele().subscribe((data: any[]) => {
-      this.modeles = data
-    })
-
-    /*const fd = new FormData();
-    if (this.selectedFile != null) {
-      fd.append('file', this.selectedFile, this.selectedFile.name)
-    }
-    this.httpClient.post('', fd)
-      .subscribe((res: any) => {
-        console.log(res)
-      })*/
   }
 
 
@@ -129,4 +109,17 @@ export class AddDemandproComponent implements OnInit {
     return
   }
 
+  onMarqueChange() {
+    const marqueId = this.demandeProForm.get('marqueId')?.value;
+    this.sousMarqueService.getById(marqueId).subscribe((data: any[]) => {
+      this.sousMarque = data;
+    });
+  }
+
+  onSousMarqueChange() {
+    const sousMarqueId = this.demandeProForm.get('sousMarqueId')?.value;
+    this.modeleService.getBySousMarqueId(sousMarqueId).subscribe((data: any[]) => {
+      this.modeles = data
+    })
+  }
 }

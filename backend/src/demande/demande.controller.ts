@@ -34,6 +34,7 @@ import { v4 as uuidv4 } from 'uuid';
 import path = require('path');
 import { Observable, of } from 'rxjs';
 import { join } from 'path';
+import { EtatproduitService } from 'src/etatproduit/etatproduit.service';
 
 export const storage = {
   storage: diskStorage({
@@ -70,7 +71,8 @@ export class DemandeController {
     private produitService: ProduitService,
     private imagesService: ImagesService,
     private billService: BillService,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private etatproduitService:EtatproduitService
   ) { }
 
   // get distributeur demandes
@@ -318,13 +320,15 @@ export class DemandeController {
     @Param('id') id: number,
     @Body() payload: Partial<Demande>,
   ): Promise<UpdateResult> {
-    console.log('Update Traitement');
+    console.log('Update Traitement',payload);
     // TODO validation
     // TODO check if user has the resource ( either an admin , or an affected technicien)
 
     payload.status = Status.Reparation;
 
     // notify distrbuteur
+    let produit = await this.etatproduitService.getById(payload.etatProduitId);
+    payload.etatProduit = produit;
     let updateResult = await this.service.update(id, payload);
     if (updateResult.affected != 0) {
       // a row has changed // TODO check if status has changed

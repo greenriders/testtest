@@ -21,8 +21,12 @@ export class ModeleService {
   //   return this.httpClient.get(this.api)
   // }
 
-  public getById(id: string): Observable<any> {
+  public getById(id: string): Observable<Modele> {
     return this.httpClient.get(this.api + '/' + id)
+  }
+
+  public getBySousMarqueId(sousMarqueId: string): Observable<Modele[]> {
+    return this.httpClient.get(this.api + '/sousMarque/' + sousMarqueId)
   }
 
   public addModele(

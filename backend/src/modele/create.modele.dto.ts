@@ -6,6 +6,6 @@ export class CreateModeleDto {
     nom: string;
 
     @IsInt()
-    marqueId: number;
+    sousMarqueId: number;
 
 }

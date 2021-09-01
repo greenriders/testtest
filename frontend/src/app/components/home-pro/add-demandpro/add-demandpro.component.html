@@ -8,7 +8,8 @@
 
     <mat-form-field class="full-width">
       <mat-label>Marque</mat-label>
-      <mat-select formControlName="marqueId" class="form-control">
+      <mat-select formControlName="marqueId" class="form-control" (ngModelChange)="onMarqueChange()"
+        [disabled]="marques.length===0">
         <mat-option *ngFor="let m of marques" [value]="m.id">
           {{ m.nom }}
         </mat-option>
@@ -18,8 +19,9 @@
 
     <mat-form-field class="full-width">
       <mat-label>Sous-marque</mat-label>
-      <mat-select formControlName="modeleId" class="form-control">
-        <mat-option *ngFor="let m of modeles" [value]="m.id">
+      <mat-select formControlName="sousMarqueId" class="form-control" (ngModelChange)="onSousMarqueChange()"
+        [disabled]="sousMarque.length===0">
+        <mat-option *ngFor="let m of sousMarque" [value]="m.id">
           {{ m.nom }}
         </mat-option>
       </mat-select>
@@ -30,12 +32,12 @@
 
     <mat-form-field class="full-width">
       <mat-label>Modele</mat-label>
-      <mat-select formControlName="produitId" class="form-control">
-        <mat-option *ngFor="let p of produits" [value]="p.id">
+      <mat-select formControlName="modeleId" class="form-control" [disabled]="modeles.length===0">
+        <mat-option *ngFor="let p of modeles" [value]="p.id">
           {{ p.nom }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="checkerror('produitId', 'required')">This field is required</mat-error>
+      <mat-error *ngIf="checkerror('modeleId', 'required')">This field is required</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
@@ -91,30 +93,30 @@
         formControlName="panneClient"></textarea>
       <mat-error *ngIf="checkerror('panneClient', 'required')">This field is required</mat-error>
     </mat-form-field>
-      <div class="d-flex">
-        <div>
-          <label class="form-label">Upload votre facteur de achat :</label><br>
-          <input type="file" multiple placeholder="upload facteur" (change)="onFilesSelected($event)">
-        </div>
-
-        <div>
-          <label class="form-label">Upload images :</label><br>
-          <input type="file" multiple placeholder="upload facteur" (change)="onImagesSelected($event)">
-        </div>
+    <div class="d-flex">
+      <div>
+        <label class="form-label">Upload votre facteur de achat :</label><br>
+        <input type="file" multiple placeholder="upload facteur" (change)="onFilesSelected($event)">
       </div>
-      <br>
-      <section>
-        <mat-checkbox class="chexkbox" formControlName="emballage">Emballage</mat-checkbox>
-      </section>
 
-      <br />
-      <div class="row btn-row btn-gr">
-        <button (click)="addDemandePro()" type="submit" [disabled]="!demandeProForm.valid" class="btn btn-primary mb-5">
-          Créer une demande
-        </button>
-        <div class="lateral-bar"></div>
-        <div class="lateral-bar"></div>
+      <div>
+        <label class="form-label">Upload images :</label><br>
+        <input type="file" multiple placeholder="upload facteur" (change)="onImagesSelected($event)">
       </div>
+    </div>
+    <br>
+    <section>
+      <mat-checkbox class="chexkbox" formControlName="emballage">Emballage</mat-checkbox>
+    </section>
+
+    <br />
+    <div class="row btn-row btn-gr">
+      <button (click)="addDemandePro()" type="submit" [disabled]="!demandeProForm.valid" class="btn btn-primary mb-5">
+        Créer une demande
+      </button>
+      <div class="lateral-bar"></div>
+      <div class="lateral-bar"></div>
+    </div>
   </form>
 </div>
 

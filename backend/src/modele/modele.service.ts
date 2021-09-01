@@ -19,6 +19,14 @@ export class ModeleService {
     return this.repository.findOne(id);
   }
 
+  getBySousMarqueId(sousMarqueId: number): Promise<Modele[]> {
+    return this.repository.find({
+      where: {
+        sousMarqueId: sousMarqueId,
+      },
+    });
+  }
+
   create(modele: Partial<Modele>): Promise<Modele> {
     console.log('modele', modele);
     return this.repository.save(modele);

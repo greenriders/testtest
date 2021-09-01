@@ -20,9 +20,9 @@ import { TransporteurModule } from './transporteur/transporteur.module';
 import { ImagesModule } from './images/images.module';
 import { BillsModule } from './bill/bill.module';
 import { MailerModule } from '@nestjs-modules/mailer';
-import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { MailService } from './utils/mail.service';
-import { join } from 'path';
+import { SousMarqueModule } from './sous-marque/sous-marque.module';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -30,13 +30,14 @@ import { join } from 'path';
     }),
     MailerModule.forRoot({
       transport: {
-        service:"hotmail",
+        service: "hotmail",
         auth: {
           user: 'greenridersnewtest@outlook.com',
           pass: '123123123@@',
         },
       },
     }),
+    SousMarqueModule,
     DemandsModule,
     DistributeurModule,
     ClientModule,

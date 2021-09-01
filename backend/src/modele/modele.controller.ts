@@ -21,10 +21,17 @@ export class ModeleController {
   async getAll(): Promise<Modele[]> {
     return await this.service.getAll();
   }
+
   @Get('/:id')
   getById(@Param('id') id: number): Promise<Modele> {
     return this.service.getById(id);
   }
+
+  @Get('/sousMarque/:sousMarqueId')
+  getBysousMarqueId(@Param('sousMarqueId') sousMarqueId: number): Promise<Modele[]> {
+    return this.service.getBySousMarqueId(sousMarqueId);
+  }
+
   @Post()
   async create(@Body() modele: CreateModeleDto): Promise<Modele> {
     return await this.service.create(modele);
