@@ -12,9 +12,10 @@ import { ImagesModule } from 'src/images/images.module';
 import { BillsModule } from 'src/bill/bill.module';
 import { ClientModule } from 'src/client/client.module';
 import { EtatproduitModule } from 'src/etatproduit/etatproduit.module';
+import { UserModule } from 'src/user/user.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Demande, DemandeToAnomalie]),EtatproduitModule, ClientModule, UtilsModule, ImagesModule, BillsModule, DistributeurModule, ProduitModule, AnomalieModule],
+  imports: [TypeOrmModule.forFeature([Demande, DemandeToAnomalie]), UserModule, EtatproduitModule, ClientModule, UtilsModule, ImagesModule, BillsModule, DistributeurModule, ProduitModule, AnomalieModule],
   controllers: [DemandeController],
   providers: [DemandeService]
 })

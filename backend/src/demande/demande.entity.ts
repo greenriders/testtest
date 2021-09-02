@@ -5,9 +5,10 @@ import { Changement } from './../changement/changement.entity';
 import { Intervention } from './../intervention/intervention.entity';
 import { Distributeur } from '../distributeur/distributeur.entity';
 import { Produit } from "src/produit/produit.entity";
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinTable, ManyToMany, BeforeInsert } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany, ManyToOne,ManyToMany,JoinTable } from "typeorm";
 import { Client } from 'src/client/client.entity';
 import { User } from 'src/user/user.entity';
+import { Anomalie } from 'src/anomalie/anomalie.entity';
 import { Image } from 'src/images/images.entity';
 import { Status } from 'src/enums/status.enum';
 import { Bill } from 'src/bill/bill.entity';
@@ -56,9 +57,9 @@ export class Demande {
 
     // Traitment 
 
-    // @ManyToMany(type => Anomalie)
-    // @JoinTable()
-    // anomalie: Anomalie[];
+     @ManyToMany(type => Anomalie)
+     @JoinTable()
+     anomalie: Anomalie[];
 
 
     // TODO make typologie relation 

@@ -35,6 +35,7 @@ import path = require('path');
 import { Observable, of } from 'rxjs';
 import { join } from 'path';
 import { EtatproduitService } from 'src/etatproduit/etatproduit.service';
+import { UserService } from 'src/user/user.service';
 
 export const storage = {
   storage: diskStorage({
@@ -72,7 +73,8 @@ export class DemandeController {
     private imagesService: ImagesService,
     private billService: BillService,
     private clientService: ClientService,
-    private etatproduitService:EtatproduitService
+    private etatproduitService: EtatproduitService,
+    private userService: UserService
   ) { }
 
   // get distributeur demandes
@@ -111,9 +113,11 @@ export class DemandeController {
   }
 
   @Get('/:id')
-  getById(@Param('id') id: number): Promise<Demande> {
+  async getById(@Param('id') id: number): Promise<any> {
     // TODO user has authority on this demande
-    return this.service.getById(id);
+    const demande = await this.service.getById(id);
+    const technicienName =await this.userService.findById(demande.technicienId);
+    return { ...demande, technicienName: technicienName.nom };
   }
 
   @Get('/client/:email')
@@ -320,7 +324,7 @@ export class DemandeController {
     @Param('id') id: number,
     @Body() payload: Partial<Demande>,
   ): Promise<UpdateResult> {
-    console.log('Update Traitement',payload);
+    console.log('Update Traitement', payload);
     // TODO validation
     // TODO check if user has the resource ( either an admin , or an affected technicien)
 

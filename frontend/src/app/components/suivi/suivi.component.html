@@ -8,8 +8,8 @@
   <input (input)="applyFilter($event)" matInput placeholder="Filter">
 </mat-form-field>
 
-<div class="mat-elevation-z0 mb-5 suivi-table">
-  <table mat-table [dataSource]="dataSource!" matSort>
+<div class="mat-elevation-z0 mb-5">
+  <table mat-table [dataSource]="dataSource!" class="table-wrapper" matSort>
 
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -52,7 +52,7 @@
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell text-center" colspan="5">No data matching the filter</td>
     </tr>
-  </table>
+  </table><br/>
   <mat-paginator [length]="demandes.length" [pageSize]="10" showFirstLastButtons
     aria-label="Select page of periodic elements">
   </mat-paginator>

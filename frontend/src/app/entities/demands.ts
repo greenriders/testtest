@@ -22,7 +22,7 @@ export interface demandeReparations {
   typeGarantie?: boolean,
   marqueId?: number,
   modeleId?: number,
-  technicienId?: number,
+  technicienName?: string,
   etatProduitId?: number,
   accessoires?: string,
   emballage?: boolean,

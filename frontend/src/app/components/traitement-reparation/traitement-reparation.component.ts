@@ -17,21 +17,21 @@ export class TraitementReparationComponent implements OnInit {
 
   dialogRef!: MatDialogRef<DialogComponent>;
 
-  traitements : demandeReparations[] = [];
+  traitements: demandeReparations[] = [];
   etatproduits: Etatproduit[] = [];
-  techniciens : User[] = []
+  techniciens: User[] = []
 
   columnNames: string[] = ["numRMA", "datePriseEnCharge", "typologie", "typeGarantie", "technicienId", "etatProduitId", "accessoires", "emballage", "modifier"]
 
   constructor(private _traitementService: DemandereparationService,
-              private etatproduitService: EtatproduitService,
-              private _technicienService: UserService,
-              public dialog: MatDialog) { }
+    private etatproduitService: EtatproduitService,
+    private _technicienService: UserService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getTraitement();
 
-    this._technicienService.getAllTechnicien().subscribe((data: any[])=> {
+    this._technicienService.getAllTechnicien().subscribe((data: any[]) => {
       this.techniciens = data
     });
 
@@ -41,11 +41,30 @@ export class TraitementReparationComponent implements OnInit {
 
   }
 
-  getTraitement():void {
+  getTraitement(): void {
     this._traitementService.getDemandereparation().subscribe((data: any[]) => {
-    console.log(data)
-    return this.traitements = data;
+      console.log(data)
+      return this.traitements = data;
     });
   }
 
+  getEtatProduitsName(id: number): string {
+    let etat='';
+    this.etatproduits.forEach(item => {
+      if (item.id === id) {
+        etat = item.etat;
+      }
+    });
+    return etat;
+  }
+
+  getTechniciensName(id: number): string {
+    let nom='';
+    this.techniciens.forEach(item => {
+      if (item.id === id) {
+        nom = item.nom;
+      }
+    });
+    return nom;
+  }
 }

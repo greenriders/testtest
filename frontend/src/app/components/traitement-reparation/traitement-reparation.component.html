@@ -23,12 +23,12 @@
 
     <ng-container matColumnDef="technicienId">
       <th mat-header-cell *matHeaderCellDef>Technicien</th>
-      <td mat-cell *matCellDef="let element">{{ element.technicienId }}</td>
+      <td mat-cell *matCellDef="let element">{{ getTechniciensName(element.technicienId) }}</td>
     </ng-container>
 
     <ng-container matColumnDef="etatProduitId">
       <th mat-header-cell *matHeaderCellDef>Etats de Produits</th>
-      <td mat-cell *matCellDef="let element">{{ element.etatProduitId }}</td>
+      <td mat-cell *matCellDef="let element">{{ getEtatProduitsName(element.etatProduitId) }}</td>
     </ng-container>
 
     <ng-container matColumnDef="accessoires">

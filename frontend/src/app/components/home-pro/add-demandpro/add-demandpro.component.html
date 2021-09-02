@@ -7,7 +7,7 @@
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <mat-label>Marque</mat-label>
+      <mat-label>Marque</mat-label> 
       <mat-select formControlName="marqueId" class="form-control" (ngModelChange)="onMarqueChange()"
         [disabled]="marques.length===0">
         <mat-option *ngFor="let m of marques" [value]="m.id">

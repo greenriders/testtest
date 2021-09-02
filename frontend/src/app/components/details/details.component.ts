@@ -1,11 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Client } from 'src/app/entities/client';
 import { demandeReparations } from 'src/app/entities/demands';
-import { Distributeur } from 'src/app/entities/distributeur';
-import { Produit } from 'src/app/entities/produit';
 import { DemandereparationService } from 'src/app/services/demandereparation.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -30,7 +27,7 @@ export class DetailsComponent implements OnInit {
       this.id = params.id;
     });
     this.getDemande(this.id);
-  }
+  } 
 
   getDemande(id: string): void {
     this._demandereparationService.getById(id).subscribe((data: demandeReparations) => {

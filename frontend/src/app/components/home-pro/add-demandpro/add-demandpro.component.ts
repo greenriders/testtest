@@ -26,7 +26,6 @@ export class AddDemandproComponent implements OnInit {
     marqueId: new FormControl(null, [Validators.required]),
     modeleId: new FormControl(''),
     sousMarqueId: new FormControl(null, [Validators.required]),
-    produitId: new FormControl(null, [Validators.required]),
     accessoire: new FormControl(''),
     dateDemande: new FormControl(null, [Validators.required]),
     dateAchat: new FormControl(null, [Validators.required]),
