@@ -117,7 +117,8 @@ export class DemandeController {
     // TODO user has authority on this demande
     const demande = await this.service.getById(id);
     const technicienName =await this.userService.findById(demande.technicienId);
-    return { ...demande, technicienName: technicienName.nom };
+    console.log('tttttttttttttttt,',technicienName,demande.technicienId)
+    return { ...demande, technicienName: technicienName?.nom };
   }
 
   @Get('/client/:email')

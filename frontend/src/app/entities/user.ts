@@ -13,5 +13,4 @@ export enum UserRole {
   Particulier = 'particulier',
   Technicien = 'technicien',
   Invité = 'invité',
-  Client = 'client'
 }

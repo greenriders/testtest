@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     if (this.authService.isLoggedIn()) {
       let user = await this.authService.getUser();
 
-      if (user.role == UserRole.Professionnel||user.role == UserRole.Client) {
+      if (user.role == UserRole.Professionnel) {
         this.router.navigate(['/homepro']);
         return;
       }

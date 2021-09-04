@@ -36,7 +36,6 @@ export class DemandeService {
   }
 
   update(id: number, demande: Partial<Demande>): Promise<UpdateResult> {
-    console.log('tttttttttttttttttttttt',id,demande)
     return this.repository.update({ id }, demande);
   }
 

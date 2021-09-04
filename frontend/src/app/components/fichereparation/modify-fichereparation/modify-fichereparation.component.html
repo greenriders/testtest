@@ -6,15 +6,6 @@
   >
 
   <mat-form-field class="full-width">
-    <mat-label>Anomalie</mat-label>
-    <mat-select formControlName="anomaliesIds" class="form-control" multiple>
-      <mat-option *ngFor="let a of anomalies" [value]="a.id">
-        {{ a.nom }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field class="full-width">
     <mat-label>Type intervention</mat-label>
     <mat-select formControlName="interventionId" class="form-control">
       <mat-option *ngFor="let t of interventions" [value]="t.id">

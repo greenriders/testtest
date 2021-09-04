@@ -46,6 +46,6 @@ export class AppComponent implements OnInit {
   }
 
   isClientUser() {
-    return this.user?.role === UserRole.Client;
+    return this.user?.role === UserRole.Professionnel;
   }
 }

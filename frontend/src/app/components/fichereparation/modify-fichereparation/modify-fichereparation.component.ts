@@ -1,4 +1,3 @@
-import { AnomalieService } from 'src/app/services/anomalie.service';
 import { DemandereparationService } from 'src/app/services/demandereparation.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -8,14 +7,12 @@ import { demandeReparations } from 'src/app/entities/demands';
 import { Intervention } from 'src/app/entities/intervention';
 import { ChangementService } from 'src/app/services/changement.service';
 import { InterventionService } from 'src/app/services/intervention.service';
-import { AnomalieCategoryService } from 'src/app/services/anomalie-category.service';
-import { Anomalie } from 'src/app/entities/anomalie';
 
 @Component({
   selector: 'app-modify-fichereparation',
   templateUrl: './modify-fichereparation.component.html',
   styleUrls: ['./modify-fichereparation.component.scss'],
-})
+}) 
 export class ModifyFichereparationComponent implements OnInit {
   id: string = '';
   fichereparation: demandeReparations | null = null;
@@ -23,20 +20,17 @@ export class ModifyFichereparationComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private _fichereparationService: DemandereparationService,
-    private _anomalieService: AnomalieService,
     private _interventionService: InterventionService,
     private _changementService: ChangementService
   ) {}
 
   fichereparationForm = new FormGroup({
-    anomaliesIds: new FormControl(''),
     interventionId: new FormControl(''),
     changementId: new FormControl(''),
     note: new FormControl(''),
     dateSortie: new FormControl(''),
   });
 
-  anomalies: Anomalie[] = [];
   interventions: Intervention[] = [];
   changements: Changement[] = [];
 
@@ -65,9 +59,6 @@ export class ModifyFichereparationComponent implements OnInit {
       this.changements = data;
     });
 
-    this._anomalieService.get().subscribe((data: any[]) => {
-      this.anomalies = data;
-    });
   }
 
   ngOnInit(): void {

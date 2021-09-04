@@ -4,5 +4,4 @@ export enum Role {
     Particulier = 'particulier',
     Technicien = 'technicien',
     Invité = 'invité',
-    Client = 'client'
 }

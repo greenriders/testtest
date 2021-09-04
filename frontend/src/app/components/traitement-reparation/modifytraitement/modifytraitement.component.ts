@@ -11,15 +11,20 @@ import { Modele } from 'src/app/entities/modele';
 import { DemandereparationService } from 'src/app/services/demandereparation.service';
 import { MarqueService } from 'src/app/services/marque.service';
 import { ModeleService } from 'src/app/services/modele.service';
+import { AnomalieService } from 'src/app/services/anomalie.service';
+import { AnomalieCategoryService } from 'src/app/services/anomalie-category.service';
+import { Anomalie } from 'src/app/entities/anomalie';
 
 @Component({
   selector: 'app-modifytraitement',
   templateUrl: './modifytraitement.component.html',
-  styleUrls: ['./modifytraitement.component.scss'],
+  styleUrls: ['./modifytraitement.component.scss'], 
 })
 export class ModifytraitementComponent implements OnInit {
   id: string = '';
   traitement: demandeReparations | null = null;
+  anomalies: Anomalie[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private router : Router,
@@ -27,10 +32,12 @@ export class ModifytraitementComponent implements OnInit {
     private _marqueService: MarqueService,
     private _modeleService: ModeleService,
     private _technicienService: UserService,
-    private _etatproduitService: EtatproduitService
+    private _etatproduitService: EtatproduitService,
+    private _anomalieService: AnomalieService,
   ) {}
 
   traitementForm = new FormGroup({
+    anomaliesIds: new FormControl(''),
     datePriseEnCharge: new FormControl(''),
     typologie: new FormControl(''),
     typeGarantie: new FormControl(''),
@@ -76,6 +83,10 @@ export class ModifytraitementComponent implements OnInit {
     this._etatproduitService.get().subscribe((data: any[]) => {
       this.etatproduits = data
     })
+
+    this._anomalieService.get().subscribe((data: any[]) => {
+      this.anomalies = data;
+    });
   }
 
   ngOnInit(): void {

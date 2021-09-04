@@ -40,7 +40,7 @@ export class SuiviComponent implements OnInit {
   async ngOnInit() {
     //this.dataSource.filterPredicate = this.filterPredicate;
     const user: User = await this.authService.getUser();
-    if (user.role === UserRole.Client) {
+    if (user.role === UserRole.Professionnel) {
       this.demandeService.getByClient(user.email).subscribe((demandes) => {
         console.log(demandes);
         this.demandes = demandes
