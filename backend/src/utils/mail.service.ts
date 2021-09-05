@@ -9,51 +9,51 @@ export class MailService {
     ) {
 
     }
-    
-    demandeReparation(email:string , demande:Demande){
-        
+
+    demandeReparation(email: string, demande: Demande) {
+
         return this.mailerService.sendMail({
-            from: 'Greenriders <17zrami@gmail.com>',  
-            to: email, 
-            subject: "Une Demande a été prise en charge", 
-            text: "", 
-            html: `<p>Votre demande a été prise en charge pour la réparation. Votre numéro RMA est ${demande.numRMA} </p>`, 
+            from: 'Greenriders <greenridersnewtest@outlook.com>',
+            to: email,
+            subject: "Une Demande a été prise en charge",
+            text: "",
+            html: `<p>Votre demande a été prise en charge pour la réparation. Votre numéro RMA est ${demande.numRMA} </p>`,
         })
 
     }
 
-    demandeRecieved(email:string , demande:Demande){
-        
+    demandeRecieved(email: string, demande: Demande) {
+
         return this.mailerService.sendMail({
-            from: 'Greenriders <greenridersnewtest@outlook.com>',  
-            to: email, 
-            subject: "Demande De Réperation Reçu", 
-            text: "", 
-            html: `<p>Une nouvelle demande de réparation a été reçue. <br/> Votre numéro RMA est ${demande.numRMA} </p>`, 
+            from: 'Greenriders <greenridersnewtest@outlook.com>',
+            to: email,
+            subject: "Demande De Réperation Reçu",
+            text: "",
+            html: `<p>Une nouvelle demande de réparation a été reçue. <br/> Votre numéro RMA est ${demande.numRMA} </p>`,
         })
 
     }
 
-    demandeRepare(email:string , demande:Demande){
-        
+    demandeRepare(email: string, demande: Demande) {
+
         return this.mailerService.sendMail({
-            from: 'Greenriders <17zrami@gmail.com>',  
-            to: email, 
-            subject: "Votre trottinette a été reparé", 
-            text: "", 
-            html: `<p>Votre trottinette a été réparé. <br/> Votre numéro RMA est ${demande.numRMA} </p>`, 
+            from: 'Greenriders <greenridersnewtest@outlook.com>',
+            to: email,
+            subject: "Votre trottinette a été reparé",
+            text: "",
+            html: `<p>Votre trottinette a été réparé. <br/> Votre numéro RMA est ${demande.numRMA} </p>`,
         })
 
     }
 
-    livraison(email:string , demande:Demande){
-        
+    livraison(email: string, demande: Demande) {
+
         return this.mailerService.sendMail({
-            from: 'Greenriders <17zrami@gmail.com>',  
-            to: email, 
-            subject: "Demande De Réperation est en livraison", 
-            text: "", 
-            html: `<p>La trottinette est en livraison. <br/> Votre numéro RMA est ${demande.numRMA} </p>`, 
+            from: 'Greenriders <greenridersnewtest@outlook.com>',
+            to: email,
+            subject: "Demande De Réperation est en livraison",
+            text: "",
+            html: `<p>La trottinette est en livraison. <br/> Votre numéro RMA est ${demande.numRMA} </p>`,
         })
 
     }
@@ -61,13 +61,25 @@ export class MailService {
     test() {
 
         return this.mailerService.sendMail({
-            from: 'Greenriders <17zrami@gmail.com>', 
-            to: "17zrami@gmail.com", 
-            subject: "aaaaaaaaaa 2", 
-            text: "aaaaaaaaaa", 
-            html: "aaaaaaaaaa", 
+            from: 'Greenriders <greenridersnewtest@outlook.com>',
+            to: "17zrami@gmail.com",
+            subject: "aaaaaaaaaa 2",
+            text: "aaaaaaaaaa",
+            html: "aaaaaaaaaa",
         })
-     
-    }
 
+    }
+    demandeClientBill(email: string, demande: Demande, anomaliePrices: any[]) {
+        return this.mailerService.sendMail({
+            from: 'Greenriders <greenridersnewtest@outlook.com>',
+            to: email,
+            subject: "Une Demande a été prise en charge",
+            text: "",
+            html: `<p>Votre numéro RMA est ${demande.numRMA} <br/> 
+            and your total bill ${demande.facture}.<br/>
+            where ${anomaliePrices.map(e=>`<h5>${e.name} ${e.price}</h5>`)}
+             </p>`,
+        })
+
+    }
 }

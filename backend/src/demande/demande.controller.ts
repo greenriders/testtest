@@ -32,7 +32,7 @@ import { BillService } from 'src/bill/bill.service';
 import { ClientService } from 'src/client/client.service';
 import { v4 as uuidv4 } from 'uuid';
 import path = require('path');
-import { Observable, of } from 'rxjs';
+import { async, Observable, of } from 'rxjs';
 import { join } from 'path';
 import { EtatproduitService } from 'src/etatproduit/etatproduit.service';
 import { UserService } from 'src/user/user.service';
@@ -117,13 +117,13 @@ export class DemandeController {
     // TODO user has authority on this demande
     const demande = await this.service.getById(id);
     const technicienName = await this.userService.findById(demande.technicienId);
-    console.log( technicienName, demande.technicienId)
+    console.log(technicienName, demande.technicienId)
     return { ...demande, technicienName: technicienName?.nom };
   }
 
   @Get('/distributeur/:id')
   async getDemandesByDistributeur(@Param('id') id: number) {
-    return this.service.getAll({distributeurId:id});
+    return this.service.getAll({ distributeurId: id });
   }
 
   @Get('/client/:email')
@@ -287,11 +287,8 @@ export class DemandeController {
 
     payload.status = Status.Repare;
 
-    // notify distrbuteur
-    let updateResult = await this.service.update(id, payload);
-
-    return updateResult;
-  }//tt
+    return this.service.update(id, payload);
+  }
 
   // traitment
   @Roles()
@@ -333,13 +330,18 @@ export class DemandeController {
     let produit = await this.etatproduitService.getById(payload.etatProduitId);
     payload.etatProduit = produit;
     let updateResult = await this.service.update(id, payload);
-    if (updateResult.affected != 0) {
-      // a row has changed // TODO check if status has changed
-      let demande = await this.service.getById(id);
-      this.mailService.demandeReparation(demande.distributeur.email, demande);
-    }
+    const anomaliePrices = [];
+    await Promise.all(
+      demandeToAnomalie.map(async e => {
+        const anomalie =  await this.anomalieService.getById(e.anomalieId);
+        anomaliePrices.push({ name: anomalie.nom, price: e.prix });
+      })
+    );
+     
+    this.mailService.demandeClientBill(demande.client.email, demande, anomaliePrices);
+
     return updateResult;
-  }///ttt
+  }
 
   @Roles(Role.Admin)
   @Put('/:id/demande')
