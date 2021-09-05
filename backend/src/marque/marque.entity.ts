@@ -1,6 +1,5 @@
-import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Produit } from 'src/produit/produit.entity';
-import { SousMarque } from 'src/sous-marque/sous-marque.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Modele } from 'src/modele/modele.entity';
 
 @Entity()
 export class Marque {
@@ -10,9 +9,6 @@ export class Marque {
     @Column()
     nom: string;
 
-    @OneToMany(() => Produit, produit => produit.marqueId)
-    produit: Produit[];
-
-    @OneToMany(() => SousMarque, sousMarque => sousMarque.id)
-    public sousMarque: SousMarque[];
+    @OneToMany(() => Modele, modele => modele.id)
+    public modele: Modele[];
 }

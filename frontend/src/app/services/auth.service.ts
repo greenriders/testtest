@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {  HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { User } from 'src/app/entities/user';
 import { ApplicationHttpClient } from './http-app-client';
 import { environment } from '../../environments/environment';
+import { Subject } from 'rxjs';
 
 
 const httpOptions = {
@@ -19,8 +20,10 @@ const USER_KEY = 'auth-user';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: ApplicationHttpClient, private router: Router) {}
+  constructor(private http: ApplicationHttpClient, private router: Router) { }
   api = `${environment.baseUrl}/auth/`
+  isLoginSubject = new Subject<boolean>();
+
   signOut(): void {
     window.sessionStorage.clear();
     window.localStorage.clear();

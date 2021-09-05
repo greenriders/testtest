@@ -19,7 +19,7 @@
 
     <mat-form-field class="full-width">
       <mat-label>Sous-marque</mat-label>
-      <mat-select formControlName="sousMarqueId" class="form-control" (ngModelChange)="onSousMarqueChange()"
+      <mat-select formControlName="modeleId" class="form-control" (ngModelChange)="onSousMarqueChange()"
         [disabled]="sousMarque.length===0">
         <mat-option *ngFor="let m of sousMarque" [value]="m.id">
           {{ m.nom }}
@@ -32,12 +32,12 @@
 
     <mat-form-field class="full-width">
       <mat-label>Modele</mat-label>
-      <mat-select formControlName="modeleId" class="form-control" [disabled]="modeles.length===0">
+      <mat-select formControlName="produitId" class="form-control" [disabled]="modeles.length===0">
         <mat-option *ngFor="let p of modeles" [value]="p.id">
           {{ p.nom }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="checkerror('modeleId', 'required')">This field is required</mat-error>
+      <mat-error *ngIf="checkerror('produitId', 'required')">This field is required</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">

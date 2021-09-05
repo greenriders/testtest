@@ -27,13 +27,14 @@ export class ModeleController {
     return this.service.getById(id);
   }
 
-  @Get('/sousMarque/:sousMarqueId')
-  getBysousMarqueId(@Param('sousMarqueId') sousMarqueId: number): Promise<Modele[]> {
-    return this.service.getBySousMarqueId(sousMarqueId);
+  @Get('/marque/:marqueId')
+  getByMarqueId(@Param('marqueId') marqueId: number): Promise<Modele[]> {
+    return this.service.getByMarqueId(marqueId);
   }
 
   @Post()
   async create(@Body() modele: CreateModeleDto): Promise<Modele> {
+    console.log(modele)
     return await this.service.create(modele);
   }
 

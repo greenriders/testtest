@@ -11,15 +11,15 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <a class="nav-item nav-link" [routerLink]="['/homepro']" routerLinkActive="active">Home</a>
+          <a class="nav-item nav-link" *ngIf="user" [routerLink]="['/homepro']" routerLinkActive="active">Home</a>
 
-          <div *ngIf="!user || user.role != 'professionnel'" class="navbar-nav" [ngStyle]="{ color: style.aNavColor }">
+          <div class="navbar-nav" [ngStyle]="{ color: style.aNavColor }">
             <!-- <img *ngIf="isClient" src="{{clientLogo}}" /> -->
             <!-- <a *ngIf="!isClient" class="nav-item nav-link" [routerLink]="['/home']" routerLinkActive="active" >Dmands</a> -->
 
             <!-- <ng-container *ngIf="(isLoggedIn)"> -->
 
-            <a *ngIf="!isClientUser()" class="nav-item nav-link" [routerLink]="['/home']"
+            <a *ngIf="!isClientUser() &&user" class="nav-item nav-link" [routerLink]="['/home']"
               routerLinkActive="active">Demandes</a>
             <!-- <a
               class="nav-item nav-link"
@@ -27,19 +27,19 @@
               routerLinkActive="active"
               >DemandePro</a
             > -->
-            <a *ngIf="!isClientUser()" class="nav-item nav-link" [routerLink]="['/partenaires']"
+            <a *ngIf="!isClientUser() && user" class="nav-item nav-link" [routerLink]="['/partenaires']"
               routerLinkActive="active">Partenaires</a>
-            <a *ngIf="!isClientUser()" class="nav-item nav-link" [routerLink]="['/donnees']"
+            <a *ngIf="!isClientUser() && user" class="nav-item nav-link" [routerLink]="['/donnees']"
               routerLinkActive="active">Données</a>
             <!-- <a class="nav-item nav-link" [routerLink]="['/statistiques']" routerLinkActive="active">Statistiques</a> -->
-            <a class="nav-item nav-link" [routerLink]="['/suivi']" routerLinkActive="active">Suivi</a>
+            <a class="nav-item nav-link" *ngIf="user" [routerLink]="['/suivi']" routerLinkActive="active">Suivi</a>
             <!-- <a class="nav-item nav-link" [routerLink]="['/suivireparation']" routerLinkActive="active">Suivi de reparation</a> -->
             <!-- </ng-container> -->
-            <a class="nav-item nav-link" [routerLink]="['/login']" routerLinkActive="active">Connexion</a>
-            <a class="nav-item nav-link" [routerLink]="['/register']" routerLinkActive="active">S'inscrire</a>
+            <a class="nav-item nav-link" *ngIf="!user" [routerLink]="['/login']" routerLinkActive="active">Connexion</a>
+            <a class="nav-item nav-link" *ngIf="!user" [routerLink]="['/register']" routerLinkActive="active">S'inscrire</a>
           </div>
 
-          <a class="nav-item nav-link" style="color: white" href="javascript:void(0)" (click)="logout()">Se
+          <a class="nav-item nav-link" *ngIf="user" style="color: white" href="javascript:void(0)" (click)="logout()">Se
             Déconnecter</a>
         </div>
       </nav>

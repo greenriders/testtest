@@ -8,7 +8,7 @@ export class ProduitService {
   constructor(
     @InjectRepository(Produit)
     private repository: Repository<Produit>,
-  ) {}
+  ) { }
 
   getAll(): Promise<Produit[]> {
     return this.repository.find();
@@ -18,6 +18,14 @@ export class ProduitService {
     return this.repository.findOne(id);
   }
 
+  getByModeleId(modeleId: number): Promise<Produit[]> {
+    return this.repository.find({
+      where: {
+        modeleId: modeleId,
+      },
+    });
+  }
+
   create(produit: Partial<Produit>): Promise<Produit> {
     console.log('produit', produit);
     return this.repository.save(produit);
@@ -25,7 +33,7 @@ export class ProduitService {
 
   update(id: number, produit: Partial<Produit>): Promise<UpdateResult> {
     console.log('produit', produit);
-    return this.repository.update({id}, produit);
+    return this.repository.update({ id }, produit);
   }
 
   delete(id: number): Promise<DeleteResult> {

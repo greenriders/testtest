@@ -7,7 +7,6 @@ import { DistributeurModule } from './distributeur/distributeur.module';
 import { ClientModule } from './client/client.module';
 import { ProduitModule } from './produit/produit.module';
 import { MarqueModule } from './marque/marque.module';
-import { ModeleModule } from './modele/modele.module';
 import { AnomalieCategoryModule } from './anomalie-category/anomalie-category.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
@@ -21,7 +20,7 @@ import { ImagesModule } from './images/images.module';
 import { BillsModule } from './bill/bill.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { MailService } from './utils/mail.service';
-import { SousMarqueModule } from './sous-marque/sous-marque.module';
+import { ModeleModule } from './modele/modele.module';
 
 @Module({
   imports: [
@@ -37,13 +36,12 @@ import { SousMarqueModule } from './sous-marque/sous-marque.module';
         },
       },
     }),
-    SousMarqueModule,
+    ModeleModule,
     DemandsModule,
     DistributeurModule,
     ClientModule,
     ProduitModule,
     MarqueModule,
-    ModeleModule,
     AnomalieCategoryModule,
     AnomalieModule,
     AuthModule,

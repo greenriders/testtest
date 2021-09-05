@@ -25,8 +25,8 @@ export class ModeleService {
     return this.httpClient.get(this.api + '/' + id)
   }
 
-  public getBySousMarqueId(sousMarqueId: string): Observable<Modele[]> {
-    return this.httpClient.get(this.api + '/sousMarque/' + sousMarqueId)
+  public getByMarqueId(marqueId: string): Observable<Modele[]> {
+    return this.httpClient.get(this.api + '/marque/' + marqueId)
   }
 
   public addModele(

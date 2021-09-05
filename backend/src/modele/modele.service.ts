@@ -19,10 +19,10 @@ export class ModeleService {
     return this.repository.findOne(id);
   }
 
-  getBySousMarqueId(sousMarqueId: number): Promise<Modele[]> {
+  getByMarqueId(marqueId: number): Promise<Modele[]> {
     return this.repository.find({
       where: {
-        sousMarqueId: sousMarqueId,
+        marqueId: marqueId,
       },
     });
   }

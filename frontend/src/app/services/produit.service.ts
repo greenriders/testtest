@@ -20,6 +20,10 @@ export class ProduitService {
     return this.HttpClient.get(this.api + '/' + id);
   }
 
+  public getBySousMarqueId(produitId: string): Observable<Produit[]> {
+    return this.HttpClient.get(this.api + '/modele/' + produitId)
+  }
+
   // public getProduitParams():Observable<any> {
   //   let param1 = new HttpParams().set('id', '6');
   //   return this.HttpClient.get(this._Url, {params:param1}).pipe(
@@ -50,4 +54,5 @@ export class ProduitService {
   public deleteProduit(id:number):Observable<any> {
     return this.HttpClient.delete(this.api + '/' + id)
   }
+
 }

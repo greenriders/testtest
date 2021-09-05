@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { demandeReparations } from 'src/app/entities/demands';
 import { DemandereparationService } from 'src/app/services/demandereparation.service';
-import { Modele } from 'src/app/entities/modele';
+import { Produit } from 'src/app/entities/produit';
 import { User } from 'src/app/entities/user';
 import { SousMarque } from 'src/app/entities/sous-marque';
-import { SousMarqueService } from 'src/app/services/sous-marque.service';
+import { ProduitService } from 'src/app/services/produit.service';
 
 @Component({
   selector: 'app-add-demandpro',
@@ -24,8 +24,8 @@ export class AddDemandproComponent implements OnInit {
   demandeProForm = new FormGroup({
     numeroSerie: new FormControl(null, [Validators.required]),
     marqueId: new FormControl(null, [Validators.required]),
-    modeleId: new FormControl(''),
-    sousMarqueId: new FormControl(null, [Validators.required]),
+    produitId: new FormControl(''),
+    modeleId: new FormControl(null, [Validators.required]),
     accessoire: new FormControl(''),
     dateDemande: new FormControl(null, [Validators.required]),
     dateAchat: new FormControl(null, [Validators.required]),
@@ -65,16 +65,16 @@ export class AddDemandproComponent implements OnInit {
 
 
   marques: Marque[] = [];
-  modeles: Modele[] = [];
+  modeles: Produit[] = [];
   sousMarque: SousMarque[] = [];
 
   constructor(
     private _demandereparationService: DemandereparationService,
     private marqueService: MarqueService,
     private modeleService: ModeleService,
-    private sousMarqueService: SousMarqueService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private produitService:ProduitService
   ) { }
 
   ngOnInit(): void {
@@ -110,15 +110,16 @@ export class AddDemandproComponent implements OnInit {
 
   onMarqueChange() {
     const marqueId = this.demandeProForm.get('marqueId')?.value;
-    this.sousMarqueService.getById(marqueId).subscribe((data: any[]) => {
+    this.modeleService.getByMarqueId(marqueId).subscribe((data: any[]) => {
       this.sousMarque = data;
     });
   }
 
   onSousMarqueChange() {
-    const sousMarqueId = this.demandeProForm.get('sousMarqueId')?.value;
-    this.modeleService.getBySousMarqueId(sousMarqueId).subscribe((data: any[]) => {
+    const modeleId = this.demandeProForm.get('modeleId')?.value;
+    this.produitService.getBySousMarqueId(modeleId).subscribe((data: Produit[]) => {
       this.modeles = data
+      console.log(this.modeles)
     })
   }
 }

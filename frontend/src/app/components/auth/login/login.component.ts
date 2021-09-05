@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
@@ -35,12 +35,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(username, password).subscribe(
       (data) => {
         this.authService.saveToken(data.access_token);
-        console.log(data);
         this.isLoginFailed = false;
+        this.authService.isLoginSubject.next();
         this.redirect();
       },
       (err) => {
-        console.log(err);
         this.errorMessage = err.message;
         this.isLoginFailed = true;
       }

@@ -1,6 +1,6 @@
-import { SousMarque } from './../sous-marque/sous-marque.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, OneToMany } from "typeorm";
-import { Produit } from 'src/produit/produit.entity';
+import { Produit } from '../produit/produit.entity';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Marque } from '../marque/marque.entity';
 
 @Entity()
 export class Modele {
@@ -10,14 +10,13 @@ export class Modele {
     @Column()
     nom: string;
 
-    @ManyToOne(type => SousMarque, sousMarque => sousMarque.modeles, { eager: true, cascade: true })
-    sousMarque: SousMarque;
+    @OneToMany(type => Produit, produit => produit.modele)
+    produits: Produit[];
 
     @Column()
-    sousMarqueId: number;
+    marqueId: number;
 
-    @OneToMany(type => Produit, produit => produit.modele)
-    produit: Produit[];
-
+    @ManyToOne(type => Marque, marque => marque.id, { eager: true, cascade: true })
+    marque: Marque;
 
 }

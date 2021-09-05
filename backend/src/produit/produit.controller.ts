@@ -21,10 +21,17 @@ export class ProduitController {
   async getAll(): Promise<Produit[]> {
     return this.service.getAll();
   }
+
   @Get('/:id')
   getById(@Param('id') id: number): Promise<Produit> {
     return this.service.getById(id);
   }
+
+  @Get('/modele/:id')
+  getByModeleId(@Param('id') id: number): Promise<Produit[]> {
+    return this.service.getByModeleId(id);
+  }
+
   @Post()
   async create(@Body() produit: CreateProduitDto): Promise<Produit> {
     return this.service.create(produit);

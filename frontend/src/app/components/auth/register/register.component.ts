@@ -1,9 +1,9 @@
 import { User, UserRole } from './../../../entities/user';
 import { UserService } from 'src/app/services/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss']
 })
 
-export class RegisterComponent implements OnInit {
+export class RegisterComponent  {
 
   userForm = new FormGroup({
     nom: new FormControl(null, Validators.required),
@@ -34,17 +34,13 @@ export class RegisterComponent implements OnInit {
 
   rolesKeys:any = Object.keys(UserRole);
   roles:any = UserRole;
+  posting = false;
 
  
 
-  constructor(private authService: AuthService,
-    private userService: UserService,
-    private router: Router) { }
+    constructor(private userService: UserService,private authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void {
-  }
 
-  posting = false;
   async addUser() {
     if (this.posting) return false;
     this.posting = true;
@@ -53,8 +49,10 @@ export class RegisterComponent implements OnInit {
       try {
         await this.userService.add(user)
         .toPromise()
+        this.authService.isLoginSubject.next();
+        this.redirect();
 
-        this.router.navigate(['/login'])
+        //this.router.navigate(['/login'])
       } catch {
         this.posting = false;
       }
@@ -76,5 +74,17 @@ export class RegisterComponent implements OnInit {
   //     }
   //   );
   // }
+
+  async redirect() {
+    if (this.authService.isLoggedIn()) {
+      let user = await this.authService.getUser();
+
+      if (user.role == UserRole.Professionnel) {
+        this.router.navigate(['/homepro']);
+        return;
+      }
+    }
+    this.router.navigate(['/']);
+  }
 
 }

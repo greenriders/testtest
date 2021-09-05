@@ -32,12 +32,16 @@ export class AppComponent implements OnInit {
     if (this.isLoggedIn) {
       const user = await this.authService.getUser();
       this.user = user;
-
       // this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       // this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.nom + " " + user.prenom;
     }
+
+    this.authService.isLoginSubject.subscribe(async () => {
+      const user = await this.authService.getUser();
+      this.user = user;
+    })
   }
 
   logout(): void {
