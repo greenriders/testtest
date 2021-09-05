@@ -63,13 +63,20 @@ export class DemandeReparationComponent implements OnInit {
   getDemandePro(): void {
     this._demandereparationService.getDistributeurDemande()
       .subscribe((data: any[]) => {
-        console.log("data", data);
         return this.demandeReparations = data;
       });
   }
 
   getDemande(): void {
     this._demandereparationService.getDemandereparation().subscribe((data: any[]) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.demandeReparations = data;
+    });
+  }
+
+  getDemandesByDistributeur(id: any): void {
+    this._demandereparationService.getDemandesByDistributeur(id).subscribe((data: any[]) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.demandeReparations = data;

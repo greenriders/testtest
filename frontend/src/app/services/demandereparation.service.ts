@@ -52,6 +52,10 @@ export class DemandereparationService {
     return this.HttpClient.get(this.api + '/distributeur');
   }
 
+  public getDemandesByDistributeur(id: number): Observable<any> {
+    return this.HttpClient.get(this.api + '/distributeur/' + id);
+  }
+
   public getDemandereparation(): Observable<any> {
     return this.HttpClient.get(this.api);
   }
@@ -92,13 +96,13 @@ export class DemandereparationService {
       } else {
         formData.append(key, this.getFormDataField(demande[key as keyof typeof demande]));
       }
-    }); 
+    });
 
     return this.http.post(`${this.api}/create-professionnel`, formData);
   }
 
   getFormDataField(fieldValue: any) {
-    if(typeof fieldValue === 'string') {
+    if (typeof fieldValue === 'string') {
       return fieldValue;
     }
     return fieldValue;

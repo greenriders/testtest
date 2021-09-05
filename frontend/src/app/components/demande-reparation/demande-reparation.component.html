@@ -1,7 +1,17 @@
-<button mat-fab routerLink="/add-demande" color="primary" class="mt-5 mb-5">
-  <mat-icon>add</mat-icon>
-</button>
+<div class="d-flex justify-content-between align-items-center">
+  <button mat-fab routerLink="/add-demande" color="primary" class="mt-5 mb-5">
+    <mat-icon>add</mat-icon>
+  </button>
 
+  <mat-form-field style="width: 30%;">
+    <mat-label>Distributeurs</mat-label>
+    <mat-select class="form-control" (valueChange)="getDemandesByDistributeur($event)">
+      <mat-option *ngFor="let p of distributeurs" [value]="p.id">
+        {{ p.nom }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 <div>
   <table class="table-wrapper" mat-table [dataSource]="dataSource!" style="display: block;overflow-x: scroll;">
     <ng-container matColumnDef="number">
@@ -41,7 +51,7 @@
     </ng-container>
 
     <ng-container matColumnDef="dateAchat">
-      <th nowrap mat-header-cell  *matHeaderCellDef>Date de Achat</th>
+      <th nowrap mat-header-cell *matHeaderCellDef>Date de Achat</th>
       <td mat-cell *matCellDef="let element">{{ element.dateAchat }}</td>
     </ng-container>
 

@@ -157,9 +157,6 @@ export class Demande {
     uploadFacture: string;
 
     @Column({ default: '' })
-    clientNom: string;
-
-    @Column({ default: '' })
     clientEmail: string;
 
     @OneToMany(() => Image, image => image.id)

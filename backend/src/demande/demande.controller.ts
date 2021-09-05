@@ -116,9 +116,14 @@ export class DemandeController {
   async getById(@Param('id') id: number): Promise<any> {
     // TODO user has authority on this demande
     const demande = await this.service.getById(id);
-    const technicienName =await this.userService.findById(demande.technicienId);
-    console.log('tttttttttttttttt,',technicienName,demande.technicienId)
+    const technicienName = await this.userService.findById(demande.technicienId);
+    console.log( technicienName, demande.technicienId)
     return { ...demande, technicienName: technicienName?.nom };
+  }
+
+  @Get('/distributeur/:id')
+  async getDemandesByDistributeur(@Param('id') id: number) {
+    return this.service.getAll({distributeurId:id});
   }
 
   @Get('/client/:email')
@@ -135,7 +140,6 @@ export class DemandeController {
   //     limit = limit > 100 ? 100 : limit;
   //     return this.service.pagination({page : Number(page), limit : Number(limit), route: 'http://localhost:3000/demande/paginated'} )
   // }
-
 
   private async createDemande(payload: Partial<Demande>) {
     let createdDemande = await this.service.create(payload);
@@ -283,12 +287,24 @@ export class DemandeController {
 
     payload.status = Status.Repare;
 
-    let anomaliesIds = payload.anomaliesIds; //get anomalies payload
-    delete payload.anomaliesIds; //delete property before update
-
     // notify distrbuteur
     let updateResult = await this.service.update(id, payload);
 
+    return updateResult;
+  }//tt
+
+  // traitment
+  @Roles()
+  @Put('/:id/traitement')
+  async updateTraitement(
+    @Param('id') id: number,
+    @Body() payload: any,
+  ): Promise<UpdateResult> {
+    console.log('Update Traitement', payload);
+    // TODO validation
+    // TODO check if user has the resource ( either an admin , or an affected technicien)
+    let anomaliesIds = payload.anomaliesIds; //get anomalies payload
+    delete payload.anomaliesIds; //delete property before update
     let anomalies = await this.anomalieService.getByIds(anomaliesIds); // get anomalies object and add them to the relation
     let demande = await this.service.getById(id);
 
@@ -308,26 +324,8 @@ export class DemandeController {
       (sum, e) => sum + Number.parseFloat(e.prix.toString()),
       0,
     );
+
     await this.service.save(demande);
-
-    if (updateResult.affected != 0) {
-      // a row has changed // TODO check if status has changed
-
-      this.mailService.demandeRepare(demande.distributeur.email, demande);
-    }
-    return updateResult;
-  }
-
-  // traitment
-  @Roles()
-  @Put('/:id/traitement')
-  async updateTraitement(
-    @Param('id') id: number,
-    @Body() payload: Partial<Demande>,
-  ): Promise<UpdateResult> {
-    console.log('Update Traitement', payload);
-    // TODO validation
-    // TODO check if user has the resource ( either an admin , or an affected technicien)
 
     payload.status = Status.Reparation;
 
@@ -341,7 +339,7 @@ export class DemandeController {
       this.mailService.demandeReparation(demande.distributeur.email, demande);
     }
     return updateResult;
-  }
+  }///ttt
 
   @Roles(Role.Admin)
   @Put('/:id/demande')
@@ -349,7 +347,7 @@ export class DemandeController {
     @Param('id') id: number,
     @Body() payload: Partial<Demande>,
   ): Promise<UpdateResult> {
-    console.log('Update Demande');
+    console.log('Update Demande', payload);
     // TODO validation
     // TODO check if user has the resource ( either an admin , or an affected technicien)
 
