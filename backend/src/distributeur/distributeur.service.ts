@@ -18,6 +18,11 @@ export class DistributeurService {
   getById(id: number): Promise<Distributeur> {
     return this.repository.findOne(id);
   }
+
+  getByEmail(email: string): Promise<Distributeur> {
+    return this.repository.findOne({email:email});
+  }
+
   create(distributeur: Partial<Distributeur>): Promise<Distributeur> {
     // TODO only admin can create distributeur
     console.log('distributeur', distributeur);

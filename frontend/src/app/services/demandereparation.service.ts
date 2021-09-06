@@ -69,8 +69,8 @@ export class DemandereparationService {
       .pipe(map((e: any) => ({ ...e, anomaliesIds: e.demandeToAnomalie?.map((d: any) => d.anomalieId) }))) //to add all anomalies array (choose anomalie id)
   }
 
-  public getByClient(email: string): Observable<any> {
-    return this.HttpClient.get(this.api + '/client/' + email)
+  public getByDistributeur(email: string): Observable<any> {
+    return this.HttpClient.get(this.api + '/distributeur/' + email)
       .pipe(map(data => data));
   }
 

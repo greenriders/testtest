@@ -121,15 +121,10 @@ export class DemandeController {
     return { ...demande, technicienName: technicienName?.nom };
   }
 
-  @Get('/distributeur/:id')
-  async getDemandesByDistributeur(@Param('id') id: number) {
-    return this.service.getAll({ distributeurId: id });
-  }
-
-  @Get('/client/:email')
-  async getByClientId(@Param('email') email: string): Promise<Demande[]> {
-    const client = await this.clientService.findByEmail(email);
-    return this.service.getByClientId({ clientId: client.id });
+  @Get('/distributeur/:email')
+  async getDemandesByDistributeur(@Param('email') email: string) {
+    const distributeur = await this.distributuerService.getByEmail(email)
+    return this.service.getAll({ distributeurId: distributeur.id });
   }
 
   // @Get('paginated')
@@ -198,7 +193,10 @@ export class DemandeController {
     payload.createdById = user.id;
     payload.distributeurId = distributeur.id;
 
-    const client = await this.clientService.findByEmail(payload.clientEmail);
+    let client = await this.clientService.findByEmail(payload.clientEmail);
+    if (client === undefined) {
+      client = await this.clientService.create({ email: payload.clientEmail, nom: payload.clientNom, distributeurId: payload.distributeurId });
+    }
     payload.client = client;
     console.log("payload.distributeurId ", payload.distributeurId)
     let demande = await this.createDemande(payload);
@@ -290,7 +288,7 @@ export class DemandeController {
   }
 
   // traitment
-  @Roles()
+  //@Roles()
   @Put('/:id/traitement')
   async updateTraitement(
     @Param('id') id: number,
@@ -332,14 +330,20 @@ export class DemandeController {
     const anomaliePrices = [];
     await Promise.all(
       demandeToAnomalie.map(async e => {
-        const anomalie =  await this.anomalieService.getById(e.anomalieId);
+        const anomalie = await this.anomalieService.getById(e.anomalieId);
         anomaliePrices.push({ name: anomalie.nom, price: e.prix });
       })
     );
-    
-    if(demande?.client?.email){
-    this.mailService.demandeClientBill(demande.client.email, demande, anomaliePrices);
+    //notify client
+    if (demande?.client?.email && demande.typeGarantie === false) {
+      this.mailService.demandeClientBill(demande.client.email, demande, anomaliePrices);
     }
+    //notify distributeur
+    this.mailService.demandeReparation(demande.distributeur.email, demande);
+
+    //notify technicien
+    this.mailService.demandeReparation(demande.technicien.email, demande);
+
     return updateResult;
   }
 

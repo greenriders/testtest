@@ -52,7 +52,6 @@ export class FichereparationComponent implements OnInit {
 
   get(): void {
     this._fichereparationService.getDemandereparation().subscribe((data: any[]) => {
-      console.log(data)
       return this.fichereparations = data;
     });
   }
@@ -61,5 +60,11 @@ export class FichereparationComponent implements OnInit {
     return demande.demandeToAnomalie.map(e => e.anomalie.nom).join(" , ")
   }
 
+  getChangementNom(id: number) {
+    return this.changements.find(e => e.id===id)?.nom;
+  }
 
+  getInterventionNom(id: number) {
+    return this.interventions.find(e => e.id===id)?.type;
+  }
 }

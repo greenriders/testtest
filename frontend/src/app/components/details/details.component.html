@@ -238,40 +238,35 @@
       <div class="col-sm-12">
         <table class="table border">
           <tr>
-            <th>Panne annoncée par le client :</th>
-            <td>{{demandeReparation.panneClient}}</td>
+            <th>Panne annoncée par le client : <span style="margin-left: 40px;">{{demandeReparation.panneClient}}</span></th>
           </tr>
         </table>
       </div>
       <div class="col-sm-12">
         <table class="table border">
           <tr>
-            <th>Anomalies</th>
-            <td>{{getAnomalies(demandeReparation.demandeToAnomalie)}}</td>
+            <th>Anomalies: <span style="margin-left: 40px;">{{getAnomalies(demandeReparation.demandeToAnomalie)}}</span></th>
           </tr>
         </table>
       </div>
       <div class="col-sm-12">
         <table class="table border">
           <tr>
-            <th>Interventions</th>
-            <td>{{demandeReparation.intervention?.type}}</td>
+            <th>Interventions: <span style="margin-left: 40px;">{{demandeReparation.intervention?.type}}</span></th>
           </tr>
         </table>
       </div>
       <div class="col-sm-12">
         <table class="table border">
           <tr>
-            <th>Changements effectués</th>
-            <td>{{demandeReparation.changement?.nom}}</td>
+            <th>Changements effectués : <span style="margin-left: 40px;">{{demandeReparation.changement?.nom}}</span></th>
           </tr>
         </table>
       </div>
       <div class="col-sm-12">
         <table class="table border">
           <tr>
-            <th>Note</th>
-            <td>{{demandeReparation.note}}</td>
+            <th>Note: <span style="margin-left: 40px;">{{demandeReparation.note}}</span></th>
           </tr>
         </table>
       </div>

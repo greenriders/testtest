@@ -58,3 +58,7 @@ table {
 // h3 .title {
 //   color:rgba(255, 206, 51, 0.1)
 // }
+
+.mat-paginator .mat-paginator-outer-container .mat-paginator-container{
+  min-height: 40px !important;
+}

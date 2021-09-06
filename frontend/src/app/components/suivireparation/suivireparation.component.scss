@@ -50,12 +50,12 @@
 }
 
 .progressBar li.active:before {
-  border-color: #FFCE33;
-  background-color: #FFCE33;
+  border-color: #FFB30B;
+  background-color: #FFB30B;
 }
 
 .progressBar .active:after {
-  background-color: #FFCE33;
+  background-color: #FFB30B; 
 }
 
 .transactions-table {
@@ -74,7 +74,7 @@ button .mat-primary {
     color: black;
     align-self: stretch;
     font-weight: bold;
-    text-decoration: underline #FFCE33 3px solid;
+    text-decoration: underline #FFB30B 3px solid;
   }
 
   .mat-cell {
@@ -102,7 +102,7 @@ button .mat-primary {
   }
 
   .mat-row:hover {
-    background-color: rgb(253, 224, 129);
+    background-color: #e2a469;
   }
 
   .mat-row {
@@ -117,7 +117,7 @@ button .mat-primary {
   text-align: center;
   font-size: 16px;
   font-weight: bold;
-  background: linear-gradient(91.02deg, #FFCE33 89.49%, rgba(255, 206, 51,
-        0.1) 89.49%, rgba(1, 119, 143, 0) 90.33%, #FFCE33 90.38%, #FFCE33 93.69%,
-      rgba(255, 206, 51, 0) 93.72%, rgba(255, 206, 51, 0.1) 94.56%, #FFCE33 94.59%);
+  background: linear-gradient(91.02deg, #FFB30B 89.49%, rgba(255, 206, 51,
+        0.1) 89.49%, rgba(1, 119, 143, 0) 90.33%, #FFB30B 90.38%, #FFB30B 93.69%,
+      rgba(255, 206, 51, 0) 93.72%, rgba(255, 206, 51, 0.1) 94.56%, #FFB30B 94.59%);
 }

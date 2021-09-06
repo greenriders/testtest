@@ -14,19 +14,19 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row text-center">
     <div class="col-xs-12 col-md-8 offset-md-2 p-0 pt-5 center">
       <table mat-table [dataSource]="transactions" class="mat-elevation-z0 transactions-table">
 
         <ng-container matColumnDef="donnee">
-          <th mat-header-cell *matHeaderCellDef> Donnee </th>
+          <th mat-header-cell *matHeaderCellDef class="text-center"> Donnee </th>
           <td mat-cell *matCellDef="let transaction"> {{transaction.donnee}} </td>
           <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
         </ng-container>
 
 
         <ng-container matColumnDef="details">
-          <th mat-header-cell *matHeaderCellDef> Details </th>
+          <th mat-header-cell *matHeaderCellDef class="text-center"> Details </th>
           <td mat-cell *matCellDef="let transaction">
             {{transaction.details}}
             <!-- {{transaction.codetailsst | currency}} -->

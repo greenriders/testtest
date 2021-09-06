@@ -37,4 +37,7 @@ export class LivraisonComponent implements OnInit {
     });
   }
 
+  getTransporteurNom(id: number) {
+    return this.transporteurs.find(e => e.id===id)?.nom;
+  }
 }

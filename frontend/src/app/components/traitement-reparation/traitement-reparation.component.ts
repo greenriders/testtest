@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Etatproduit } from 'src/app/entities/etatproduit';
 import { EtatproduitService } from 'src/app/services/etatproduit.service';
-import { User } from './../../entities/user';
 import { UserService } from 'src/app/services/user.service';
 import { DemandereparationService } from 'src/app/services/demandereparation.service';
 import { demandeReparations } from 'src/app/entities/demands';
@@ -11,6 +10,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DistributeurService } from './../../services/distributeur.service';
 import { Distributeur } from './../../entities/distributeur';
+import { User } from 'src/app/entities/user';
 
 @Component({
   selector: 'app-traitement-reparation',
@@ -18,7 +18,7 @@ import { Distributeur } from './../../entities/distributeur';
   styleUrls: ['./traitement-reparation.component.scss']
 })
 export class TraitementReparationComponent implements OnInit {
-  
+
   distributeurs: Distributeur[] = [];
   dialogRef!: MatDialogRef<DialogComponent>;
 
@@ -52,7 +52,7 @@ export class TraitementReparationComponent implements OnInit {
     })
   }
 
-  getTraitement(): void {
+  getTraitement() {
     this._traitementService.getDemandereparation().subscribe((data: any[]) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

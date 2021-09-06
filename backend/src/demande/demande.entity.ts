@@ -159,6 +159,9 @@ export class Demande {
     @Column({ default: '' })
     clientEmail: string;
 
+    @Column({ default: '' })
+    clientNom: string;
+
     @OneToMany(() => Image, image => image.id)
     public images: Image[];
 

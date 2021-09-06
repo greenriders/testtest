@@ -17,7 +17,7 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  <div *ngIf="user.role == 'admin'" class="col-3 mt-5 mb-5">
+  <div *ngIf="user.role == 'admin' || user.role == 'technicien'" class="col-3 mt-5 mb-5">
     <mat-card class="backcolor">
       <mat-card-header>
         <mat-card-subtitle>Pré-diagnostic</mat-card-subtitle>

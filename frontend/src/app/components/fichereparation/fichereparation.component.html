@@ -1,5 +1,5 @@
 <div class="pt-5 pb-5">
-  <table class="table-wrapper" mat-table [dataSource]="fichereparations">
+  <table class="table-wrapper" mat-table [dataSource]="fichereparations" style="margin-bottom: 20px;display: block;overflow-x: scroll;">
     <ng-container matColumnDef="numRMA">
       <th mat-header-cell *matHeaderCellDef>Numero RMA</th>
       <td mat-cell *matCellDef="let element">{{ element.numRMA }}</td>
@@ -12,12 +12,12 @@
 
     <ng-container matColumnDef="interventionId">
       <th mat-header-cell *matHeaderCellDef>Type intervention</th>
-      <td mat-cell *matCellDef="let element">{{ element.interventionId }}</td>
+      <td mat-cell *matCellDef="let element">{{ getInterventionNom(element.interventionId) }}</td>
     </ng-container>
 
     <ng-container matColumnDef="changementId">
       <th mat-header-cell *matHeaderCellDef>Changemnt effectué</th>
-      <td mat-cell *matCellDef="let element">{{ element.changementId }}</td>
+      <td mat-cell *matCellDef="let element">{{ getChangementNom(element.changementId) }}</td>
     </ng-container>
 
     <ng-container matColumnDef="note">

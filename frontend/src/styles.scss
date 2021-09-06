@@ -4,10 +4,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import './assets/styles/project.scss';
 @import './assets/styles/colors';
-@import './assets/styles/main.scss'
+@import './assets/styles/main.scss';
 
 
 
 
 // html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-paginator-container{
+    min-height: 30px;
+}
