@@ -1,8 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { demandeReparations } from './../../entities/demands';
 import { ClientService } from './../../services/client.service';
-import { DistributeurService } from './../../services/distributeur.service';
-import { Distributeur } from './../../entities/distributeur';
 import { ProduitService } from './../../services/produit.service';
 import { Produit } from './../../entities/produit';
 import { DemandereparationService } from 'src/app/services/demandereparation.service';
@@ -27,16 +25,14 @@ export class DemandeReparationComponent implements OnInit {
 
   demandeReparations: demandeReparations[] = [];
   produits: Produit[] = [];
-  distributeurs: Distributeur[] = [];
   clients: Client[] = []
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   dataSource: any;
-  columnNames: string[] = ['number', 'numRMA', 'numeroSerie', 'produitId', 'distributeurId', 'clientId', 'dateDemande', 'dateAchat', 'panneClient', 'modifier', 'effacer', 'details'];
+  columnNames: string[] = ['numRMA', 'numeroSerie', 'produitId', 'distributeurId', 'clientId', 'dateDemande', 'dateAchat', 'panneClient', 'modifier', 'effacer', 'details'];
 
   constructor(private _demandereparationService: DemandereparationService,
     private _produitService: ProduitService,
-    private _distributeurService: DistributeurService,
     private _clientService: ClientService,
     public dialog: MatDialog,
   ) { }
@@ -46,13 +42,11 @@ export class DemandeReparationComponent implements OnInit {
       this.produits = data
     });
 
-    this._distributeurService.getDistributeur().subscribe((data: any[]) => {
-      this.distributeurs = data
-    })
 
     this._clientService.getClient().subscribe((data: any[]) => {
       this.clients = data
     })
+
 
     this.getDemande();
 
@@ -75,13 +69,7 @@ export class DemandeReparationComponent implements OnInit {
     });
   }
 
-  getDemandesByDistributeur(id: any): void {
-    this._demandereparationService.getDemandesByDistributeur(id).subscribe((data: any[]) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.demandeReparations = data;
-    });
-  }
+
 
   onDeleteRequest(id: number) {
     this.dialogRef = this.dialog.open(DialogComponent, {

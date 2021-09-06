@@ -53,7 +53,7 @@
         <table class="table border">
           <tr>
             <th>Marque :</th>
-            <td>{{demandeReparation.produit.marque.nom}}</td>
+            <td>{{demandeReparation.produit.modele.marque.nom}}</td>
           </tr>
           <tr>
             <th>Sous-marque</th>
@@ -89,7 +89,7 @@
           </tr>
           <tr>
             <th>Etat du produit :</th>
-            <td>{{demandeReparation.etatProduit}}</td>
+            <td>{{demandeReparation.etatProduit.etat}}</td>
           </tr>
           <tr>
             <th>Type de demande</th>
@@ -168,7 +168,7 @@
         <table class="table border">
           <tr>
             <th>Nom :</th>
-            <td>{{demandeReparation.client.nom}}</td>
+            <td>{{demandeReparation.client?.nom}}</td>
           </tr>
         </table>
       </div>
@@ -176,7 +176,7 @@
         <table class="table border">
           <tr>
             <th>Prénom :</th>
-            <td>{{demandeReparation.client.prenom}}</td>
+            <td>{{demandeReparation.client?.prenom}}</td>
           </tr>
         </table>
       </div>
@@ -185,7 +185,7 @@
         <table class="table border">
           <tr>
             <th>E-mail :</th>
-            <td>{{demandeReparation.client.email}}</td>
+            <td>{{demandeReparation.client?.email}}</td>
           </tr>
         </table>
       </div>
@@ -193,7 +193,7 @@
         <table class="table border">
           <tr>
             <th>Téléphone :</th>
-            <td>{{demandeReparation.client.telephone}}</td>
+            <td>{{demandeReparation.client?.telephone}}</td>
           </tr>
         </table>
       </div>
@@ -202,7 +202,7 @@
         <table class="table border">
           <tr>
             <th>Adresse :</th>
-            <td>{{demandeReparation.client.adresse}}</td>
+            <td>{{demandeReparation.client?.adresse}}</td>
           </tr>
         </table>
       </div>
@@ -211,7 +211,7 @@
         <table class="table border">
           <tr>
             <th>Code postal :</th>
-            <td>{{demandeReparation.client.codePostal}}</td>
+            <td>{{demandeReparation.client?.codePostal}}</td>
           </tr>
         </table>
       </div>
@@ -219,7 +219,7 @@
         <table class="table border">
           <tr>
             <th>Ville :</th>
-            <td>{{demandeReparation.client.ville}}</td>
+            <td>{{demandeReparation.client?.ville}}</td>
           </tr>
         </table>
       </div>
@@ -227,7 +227,7 @@
         <table class="table border">
           <tr>
             <th>Pays :</th>
-            <td>{{demandeReparation.client.pays}}</td>
+            <td>{{demandeReparation.client?.pays}}</td>
           </tr>
         </table>
       </div>
@@ -247,7 +247,7 @@
         <table class="table border">
           <tr>
             <th>Anomalies</th>
-            <td>{{demandeReparation.demandeToAnomalie.anomalieId}}</td>
+            <td>{{getAnomalies(demandeReparation.demandeToAnomalie)}}</td>
           </tr>
         </table>
       </div>
@@ -255,7 +255,7 @@
         <table class="table border">
           <tr>
             <th>Interventions</th>
-            <td>{{demandeReparation.intervention.type}}</td>
+            <td>{{demandeReparation.intervention?.type}}</td>
           </tr>
         </table>
       </div>
@@ -263,7 +263,7 @@
         <table class="table border">
           <tr>
             <th>Changements effectués</th>
-            <td>{{demandeReparation.changement.nom}}</td>
+            <td>{{demandeReparation.changement?.nom}}</td>
           </tr>
         </table>
       </div>

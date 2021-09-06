@@ -151,7 +151,6 @@ export class DemandeController {
       demande.distributeur.nom.slice(0, 3).toUpperCase() +
       demande.id;
     this.service.save(demande);
-    console.log(demande)
     return demande;
   }
 
@@ -337,9 +336,10 @@ export class DemandeController {
         anomaliePrices.push({ name: anomalie.nom, price: e.prix });
       })
     );
-     
+    
+    if(demande?.client?.email){
     this.mailService.demandeClientBill(demande.client.email, demande, anomaliePrices);
-
+    }
     return updateResult;
   }
 
