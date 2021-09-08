@@ -26,21 +26,22 @@ export class SuivireparationComponent implements OnInit {
   load() {
     this.demandeService.getById(this.id).subscribe((data) => {
       this.demande = data;
-      var dateDemande = moment(data.dateDemande);
-      var dateSortie = moment(data.dateSortie);
       this.transactions = [
         { donnee: 'N° RMA', details: data.numRMA },
-        { donnee: 'Code livraison', details: data.produit.codeEAN },
-        { donnee: 'Durée reparation', details: `${dateSortie.diff(dateDemande, 'days')} days` },
-        { donnee: 'N° tracking', details: "T5612792" },
+        { donnee: 'N° tracking', details: data.numeroTracking },
+        { donnee: 'N° serie', details: data.numeroSerie },
+        { donnee: 'Modele', details: data.produit.modele?.nom },
+        { donnee: 'Marque', details: data.produit.modele?.marque?.nom },
         { donnee: 'Date d’arrivée', details: data.dateDemande },
         { donnee: 'Date de départ', details: data.dateSortie },
-        { donnee: 'Proprietaire', details: "Gérard Dupas" },
-        { donnee: 'Adresse e-mail', details: data.client.email },
-        { donnee: 'Client', details: data.client.nom },
-        { donnee: 'Tel.', details: data.client.telephone },
-        { donnee: 'Adresset', details: data.client.adresse },
-        { donnee: 'Ville', details: data.client.ville },
+        { donnee: 'Client', details: data.client?.nom },
+        { donnee: 'Client e-mail', details: data.client?.email },
+        { donnee: 'l panne fini', details: data.panneClient },
+        { donnee: 'type Garantie', details: data.typeGarantie },
+        { donnee: 'accessoires', details: data.accessoires },
+        { donnee: 'changement', details: data.changement },
+        { donnee: 'has Images', details: data.hasImages },
+        { donnee: 'has Bills', details: data.hasBills }
       ];
     });
 

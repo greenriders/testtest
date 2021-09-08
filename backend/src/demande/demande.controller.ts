@@ -117,8 +117,11 @@ export class DemandeController {
     // TODO user has authority on this demande
     const demande = await this.service.getById(id);
     const technicienName = await this.userService.findById(demande.technicienId);
-    console.log(technicienName, demande.technicienId)
-    return { ...demande, technicienName: technicienName?.nom };
+    const images = await this.imagesService.getByDemandeId(demande.id);
+    const bills = await this.billService.getByDemandeId(demande.id);
+    const hasImages = images.length > 0 ? true : false;
+    const hasBills = bills.length > 0 ? true : false;
+    return { ...demande, technicienName: technicienName?.nom, hasImages: hasImages, hasBills: hasBills };
   }
 
   @Get('/distributeur/:email')
@@ -335,8 +338,8 @@ export class DemandeController {
       })
     );
     //notify client
-    if (demande?.client?.email && demande.typeGarantie === false) {
-      this.mailService.demandeClientBill(demande.client.email, demande, anomaliePrices);
+    if (demande.typeGarantie === false) {
+      this.mailService.demandeDistributeurBill(demande.distributeur.email, demande, anomaliePrices);
     }
     //notify distributeur
     this.mailService.demandeReparation(demande.distributeur.email, demande);

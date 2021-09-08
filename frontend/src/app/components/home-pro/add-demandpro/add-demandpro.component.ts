@@ -74,7 +74,7 @@ export class AddDemandproComponent implements OnInit {
     private modeleService: ModeleService,
     private router: Router,
     private authService: AuthService,
-    private produitService:ProduitService
+    private produitService: ProduitService
   ) { }
 
   ngOnInit(): void {
@@ -92,9 +92,8 @@ export class AddDemandproComponent implements OnInit {
     }
     if (this.posting) return false;
     this.posting = true;
-    const user: User = await this.authService.getUser();
     const demande: demandeReparations = {
-      ...this.demandeProForm.value, clientEmail: user.email, bill: this.selectedFiles, images: this.selectedImages
+      ...this.demandeProForm.value, bill: this.selectedFiles, images: this.selectedImages
     };
     try {
       await this._demandereparationService
@@ -121,5 +120,11 @@ export class AddDemandproComponent implements OnInit {
       this.modeles = data
       console.log(this.modeles)
     })
+  }
+
+  getSelectedImages() {
+    let files = '';
+    this.selectedImages.forEach(e => files = files + e.name +"  ");
+    return files;
   }
 }

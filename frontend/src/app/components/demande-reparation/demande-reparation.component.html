@@ -82,8 +82,8 @@
     <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
     <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
   </table><br>
-  <mat-paginator [length]="demandeReparations.length" [pageSize]="10" showFirstLastButtons
-    aria-label="Select page of periodic elements">
+  <mat-paginator style="width: max-content;" [length]="demandeReparations.length" [pageSize]="10" showFirstLastButtons
+    aria-label="Select page of periodic elements"> 
   </mat-paginator>
   <br>
 

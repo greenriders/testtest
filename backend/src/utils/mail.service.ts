@@ -69,7 +69,7 @@ export class MailService {
         })
 
     }
-    demandeClientBill(email: string, demande: Demande, anomaliePrices: any[]) {
+    demandeDistributeurBill(email: string, demande: Demande, anomaliePrices: any[]) {
         return this.mailerService.sendMail({
             from: 'Greenriders <greenridersnewtest@outlook.com>',
             to: email,

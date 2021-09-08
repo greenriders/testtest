@@ -35,4 +35,9 @@ export class BillService {
     return this.repository.save(bill);
   }
 
+  getByDemandeId(demandeId: number): Promise<Bill[]> {
+    return this.repository.find( { where:
+      { demande: demandeId }
+  });
+  }
 }

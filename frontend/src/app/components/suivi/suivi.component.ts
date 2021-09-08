@@ -6,6 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { AuthService } from 'src/app/services/auth.service';
 import { User, UserRole } from 'src/app/entities/user';
+import { DistributeurService } from 'src/app/services/distributeur.service';
+import { Distributeur } from 'src/app/entities/distributeur';
 
 export interface PeriodicElement {
   name: string;
@@ -22,26 +24,29 @@ export interface PeriodicElement {
   styleUrls: ['./suivi.component.scss'],
 })
 export class SuiviComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'numeroRMA', 'name', 'client', 'situation'];
+  displayedColumns: string[] = ['position', 'numeroRMA', 'situation'];
   dataSource: any;
   demandes: any[] = [];
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
+  user!: User;
+  distributeur: Distributeur[] = [];
 
 
   constructor(
     private router: Router,
     private demandeService: DemandereparationService,
-    private authService: AuthService
+    private authService: AuthService,
+    private distributeurService: DistributeurService
   ) { }
 
   async ngOnInit() {
-    //this.dataSource.filterPredicate = this.filterPredicate;
-    const user: User = await this.authService.getUser();
-    if (user.role === UserRole.Professionnel) {
-      this.demandeService.getByDistributeur(user.email).subscribe((demandes) => {
+    this.distributeurService.getDistributeur().subscribe(data => this.distributeur = data);
+    this.user = await this.authService.getUser();
+    if (this.user.role === UserRole.Professionnel) {
+      this.demandeService.getByDistributeur(this.user.email).subscribe((demandes) => {
         console.log(demandes);
         this.demandes = demandes
         this.dataSource = new MatTableDataSource(demandes);
@@ -52,6 +57,7 @@ export class SuiviComponent implements OnInit {
       });
     }
     else {
+      this.displayedColumns = ['position', 'numeroRMA', 'distributer', 'situation'];
       this.demandeService.getDistributeurDemande().subscribe((demandes) => {
         console.log(demandes);
         this.demandes = demandes
@@ -86,5 +92,13 @@ export class SuiviComponent implements OnInit {
 
   redirectDetails(row: any) {
     this.router.navigate([`/suivireparation/${row.id}`]);
+  }
+
+  isAdmin() {
+    return this.user.role === UserRole.Admin;
+  }
+
+  getDistributerName(id: number) {
+    return this.distributeur.find(e => e.id === id)?.nom;
   }
 }
