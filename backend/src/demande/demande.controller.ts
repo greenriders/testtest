@@ -124,10 +124,9 @@ export class DemandeController {
     return { ...demande, technicienName: technicienName?.nom, hasImages: hasImages, hasBills: hasBills };
   }
 
-  @Get('/distributeur/:email')
-  async getDemandesByDistributeur(@Param('email') email: string) {
-    const distributeur = await this.distributuerService.getByEmail(email)
-    return this.service.getAll({ distributeurId: distributeur.id });
+  @Get('/distributeur/:id')
+  async getDemandesByDistributeur(@Param('id') id: string) {
+    return this.service.getAll({ distributeurId: id });
   }
 
   // @Get('paginated')
@@ -195,12 +194,13 @@ export class DemandeController {
     console.log("user", user)
     payload.createdById = user.id;
     payload.distributeurId = distributeur.id;
-
-    let client = await this.clientService.findByEmail(payload.clientEmail);
-    if (client === undefined) {
-      client = await this.clientService.create({ email: payload.clientEmail, nom: payload.clientNom, distributeurId: payload.distributeurId });
+    if (payload.clientEmail) {
+      let client = await this.clientService.findByEmail(payload.clientEmail);
+      if (client === undefined) {
+        client = await this.clientService.create({ email: payload.clientEmail, nom: payload.clientNom, distributeurId: payload.distributeurId });
+        payload.client = client;
+      }
     }
-    payload.client = client;
     console.log("payload.distributeurId ", payload.distributeurId)
     let demande = await this.createDemande(payload);
     console.log("demande", demande)

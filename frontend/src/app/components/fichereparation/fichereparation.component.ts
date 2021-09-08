@@ -1,7 +1,7 @@
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { DemandereparationService } from './../../services/demandereparation.service';
 import { ChangementService } from './../../services/changement.service';
 import { InterventionService } from './../../services/intervention.service';
-import { Component, OnInit } from '@angular/core';
 import { Changement } from 'src/app/entities/changement';
 import { demandeReparations } from 'src/app/entities/demands';
 import { Intervention } from 'src/app/entities/intervention';
@@ -9,6 +9,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { Anomalie } from 'src/app/entities/anomalie';
 import { AnomalieCategoryService } from 'src/app/services/anomalie-category.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-fichereparation',
@@ -24,7 +26,9 @@ export class FichereparationComponent implements OnInit {
   anomalies: Anomalie[] = [];
   interventions: Intervention[] = [];
   changements: Changement[] = [];
-
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  dataSource: any;
   columnNames: string[] = ["numRMA", "anomalieCategoryId", "interventionId", "changementId", "note", "dateSortie", "facture", "modifier"]
 
 
@@ -48,11 +52,13 @@ export class FichereparationComponent implements OnInit {
     this._anomalieService.get().subscribe((data: any[]) => {
       this.anomalies = data
     });
-  }
+  } 
 
   get(): void {
     this._fichereparationService.getDemandereparation().subscribe((data: any[]) => {
-      return this.fichereparations = data;
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.fichereparations = data;
     });
   }
 

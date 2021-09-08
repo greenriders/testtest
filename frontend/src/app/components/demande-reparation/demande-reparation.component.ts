@@ -29,7 +29,7 @@ export class DemandeReparationComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   dataSource: any;
-  columnNames: string[] = ['numRMA', 'numeroSerie', 'produitId', 'distributeurId', 'clientId', 'dateDemande', 'dateAchat', 'panneClient', 'modifier', 'effacer', 'details'];
+  columnNames: string[] = ['number', 'numRMA', 'numeroSerie', 'produitId', 'distributeurId', 'clientId', 'dateDemande', 'dateAchat', 'panneClient', 'modifier', 'effacer', 'details'];
 
   constructor(private _demandereparationService: DemandereparationService,
     private _produitService: ProduitService,

@@ -18,24 +18,16 @@ import { MulterModule } from '@nestjs/platform-express';
 import { TransporteurModule } from './transporteur/transporteur.module';
 import { ImagesModule } from './images/images.module';
 import { BillsModule } from './bill/bill.module';
-import { MailerModule } from '@nestjs-modules/mailer';
 import { MailService } from './utils/mail.service';
 import { ModeleModule } from './modele/modele.module';
+import { UtilsModule } from './utils/modele.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       loggerLevel: "error", autoLoadEntities: true,
     }),
-    MailerModule.forRoot({
-      transport: {
-        service: "hotmail",
-        auth: {
-          user: 'greenridersnewtest@outlook.com',
-          pass: '123123123@@',
-        },
-      },
-    }),
+    UtilsModule,
     ModeleModule,
     DemandsModule,
     DistributeurModule,

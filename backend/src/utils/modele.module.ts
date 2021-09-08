@@ -5,7 +5,7 @@ import { MailService } from './mail.service';
 
 @Module({
     imports: [
-        MailerModule.forRoot({
+       /* MailerModule.forRoot({
             transport: {
                 host: 'in-v3.mailjet.com',
                 port: 587,
@@ -16,7 +16,16 @@ import { MailService } from './mail.service';
                     pass: '3cd09301a72e6b14fa12e77b16f258d0',
                 },
             },
-        }),
+        }),*/
+        MailerModule.forRoot({
+            transport: {
+              service: "hotmail",
+              auth: {
+                user: 'greenridersnewtest@outlook.com',
+                pass: '123123123@@',
+              },
+            },
+          }),
     ],
     providers: [MailService],
     exports: [MailService]

@@ -28,7 +28,7 @@ export class TraitementReparationComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   dataSource: any;
-  columnNames: string[] = ['number', "numRMA", "datePriseEnCharge", "typologie", "typeGarantie", "technicienId", "etatProduitId", "accessoires", "emballage", "modifier"]
+  columnNames: string[] = ["numRMA", "datePriseEnCharge", "typologie", "typeGarantie", "technicienId", "etatProduitId", "accessoires", "emballage", "modifier"]
 
   constructor(private _traitementService: DemandereparationService,
     private etatproduitService: EtatproduitService,
@@ -74,7 +74,7 @@ export class TraitementReparationComponent implements OnInit {
     this._traitementService.getDemandesByDistributeur(id).subscribe((data: any[]) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
-      this.traitements = data;
+      this.traitements = data; 
     });
   }
 

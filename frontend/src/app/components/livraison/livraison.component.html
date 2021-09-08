@@ -1,5 +1,5 @@
 <div class="pt-5 pb-5">
-  <table class="table-wrapper" mat-table [dataSource]="livraisons">
+  <table class="table-wrapper" mat-table [dataSource]="dataSource!">
     <ng-container matColumnDef="numRMA">
       <th mat-header-cell *matHeaderCellDef>Numero RMA</th>
       <td mat-cell *matCellDef="let element">{{ element.numRMA }}</td>
@@ -8,7 +8,7 @@
     <ng-container matColumnDef="transporteurId">
       <th mat-header-cell *matHeaderCellDef>Transporteur</th>
       <td mat-cell *matCellDef="let element">{{ getTransporteurNom(element.transporteurId) }}</td>
-    </ng-container> 
+    </ng-container>
 
     <ng-container matColumnDef="dureeReparation">
       <th mat-header-cell *matHeaderCellDef>Durée Reparation</th>
@@ -23,7 +23,7 @@
     <ng-container matColumnDef="modifier">
       <th mat-header-cell *matHeaderCellDef>Modifier</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-button [routerLink]="['/' , 'livraison' , element.id ,  'modify']" >
+        <button mat-button [routerLink]="['/' , 'livraison' , element.id ,  'modify']">
           <span class="material-icons">create</span>
         </button>
       </td>
@@ -41,5 +41,7 @@
     <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
     <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
   </table>
-  </div>
-
+  <mat-paginator style="width: max-content;margin-top: 20px;" [length]="livraisons.length" [pageSize]="10" showFirstLastButtons
+    aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

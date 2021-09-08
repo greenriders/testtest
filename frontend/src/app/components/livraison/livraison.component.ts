@@ -1,8 +1,10 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Transporteur } from './../../entities/transporteur';
 import { TransporteurService } from './../../services/transporteur.service';
 import { LivraisonService } from './../../services/livraison.service';
 import { demandeReparations } from './../../entities/demands';
-import { Component, OnInit } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-livraison',
@@ -12,9 +14,11 @@ import { Component, OnInit } from '@angular/core';
 export class LivraisonComponent implements OnInit {
 
   livraisons: demandeReparations[] = [];
-  transporteurs : Transporteur[] = []
-
-  columnNames: string[] = ["numRMA", "transporteurId", "dureeReparation", "numeroTracking","modifier"]
+  transporteurs: Transporteur[] = []
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  dataSource: any;
+  columnNames: string[] = ["numRMA", "transporteurId", "dureeReparation", "numeroTracking", "modifier"]
 
 
   constructor(
@@ -30,14 +34,15 @@ export class LivraisonComponent implements OnInit {
     })
   }
 
-  get():void {
+  get(): void {
     this._livraisonService.get().subscribe((data: any[]) => {
-    console.log(data)
-    return this.livraisons = data;
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.livraisons = data;
     });
   }
 
   getTransporteurNom(id: number) {
-    return this.transporteurs.find(e => e.id===id)?.nom;
+    return this.transporteurs.find(e => e.id === id)?.nom;
   }
 }

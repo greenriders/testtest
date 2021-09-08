@@ -47,7 +47,6 @@ export class SuiviComponent implements OnInit {
     this.user = await this.authService.getUser();
     if (this.user.role === UserRole.Professionnel) {
       this.demandeService.getByDistributeur(this.user.email).subscribe((demandes) => {
-        console.log(demandes);
         this.demandes = demandes
         this.dataSource = new MatTableDataSource(demandes);
         if (this.dataSource) {
@@ -58,8 +57,7 @@ export class SuiviComponent implements OnInit {
     }
     else {
       this.displayedColumns = ['position', 'numeroRMA', 'distributer', 'situation'];
-      this.demandeService.getDistributeurDemande().subscribe((demandes) => {
-        console.log(demandes);
+      this.demandeService.getDemandereparation().subscribe((demandes) => {
         this.demandes = demandes
         this.dataSource = new MatTableDataSource(demandes);
         if (this.dataSource) {
