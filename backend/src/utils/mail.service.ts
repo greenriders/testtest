@@ -17,7 +17,19 @@ export class MailService {
             to: email,
             subject: "Une Demande a été prise en charge",
             text: "",
-            html: `<p>Votre demande a été prise en charge pour la réparation. Votre numéro RMA est ${demande.numRMA} </p>`,
+            html: `<p> La demande de réparation numéro RMA est ${demande.numRMA} </p>`, // change the text
+        })
+
+    }
+
+    demandeTechnicien(email: string, demande: Demande) {
+
+        return this.mailerService.sendMail({
+            from: 'Greenriders <greenridersnewtest@outlook.com>',
+            to: email,
+            subject: "Une Demande a été prise en charge",
+            text: "",
+            html: `<p> La demande de réparation numéro RMA est ${demande.numRMA} </p>`, // change the text
         })
 
     }
@@ -73,7 +85,7 @@ export class MailService {
         return this.mailerService.sendMail({
             from: 'Greenriders <greenridersnewtest@outlook.com>',
             to: email,
-            subject: "Une Demande a été prise en charge",
+            subject: "La facture",
             text: "",
             html: `<p>Votre numéro RMA est ${demande.numRMA} <br/> 
             and your total bill ${demande.facture}.<br/>

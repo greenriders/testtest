@@ -13,25 +13,25 @@ export class Client {
     @Column()
     nom: string;
 
-    @Column()
+    @Column({ default: '' })
     prenom: string;
 
-    @Column()
+    @Column({ default: '' })
     telephone: string;
 
     @Column()
     email: string;
 
-    @Column()
+    @Column({ default: '' })
     adresse: string;
 
-    @Column()
+    @Column({ default: '' })
     ville: string;
 
-    @Column()
+    @Column({ default: '' })
     codePostal: string;
 
-    @Column()
+    @Column({ default: '' })
     pays: string;
 
     @ManyToOne(type => Distributeur, distributeur => distributeur.clients)

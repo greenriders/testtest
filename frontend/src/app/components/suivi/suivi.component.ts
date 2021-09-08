@@ -48,6 +48,7 @@ export class SuiviComponent implements OnInit {
     if (this.user.role === UserRole.Professionnel) {
       this.demandeService.getByDistributeur(this.user.email).subscribe((demandes) => {
         this.demandes = demandes
+        console.log(demandes)
         this.dataSource = new MatTableDataSource(demandes);
         if (this.dataSource) {
           this.dataSource.paginator = this.paginator;

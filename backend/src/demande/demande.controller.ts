@@ -1,3 +1,4 @@
+import { demandeReparations } from './../../../frontend/src/app/entities/demands';
 import { AnomalieService } from './../anomalie/anomalie.service';
 import { RolesGuard } from './../utils/roles.guard';
 import { DeleteResult, UpdateResult } from 'typeorm';
@@ -129,6 +130,11 @@ export class DemandeController {
     return this.service.getAll({ distributeurId: id });
   }
 
+  @Get('/distributeur/email/:email')
+  async getDemandesByDistributeurEmail(@Param('email') email: string) {
+    const dist = await this.distributuerService.getByEmail(email);
+    return this.service.getAll({ distributeurId: dist.id });
+  }
   // @Get('paginated')
   // async index(
   //   @Query('page') page : number = 1,
@@ -185,25 +191,28 @@ export class DemandeController {
     // TODO validation
     console.log(files);
 
-    console.log("payload", payload)
+    console.log("payload, test", payload)
     let user: User = req.user;
-    console.log("user", user)
+    console.log("user, hello", user)
     let distributeur = await this.distributuerService.getById(
       user.distributeur.id,
     );
-    console.log("user", user)
+    console.log("user, world", user)
     payload.createdById = user.id;
     payload.distributeurId = distributeur.id;
     if (payload.clientEmail) {
       let client = await this.clientService.findByEmail(payload.clientEmail);
+      console.log("payload.clientEmail", payload.clientEmail, client)
+      
       if (client === undefined) {
+        console.log( payload.clientEmail, payload.clientNom, payload.distributeurId)
         client = await this.clientService.create({ email: payload.clientEmail, nom: payload.clientNom, distributeurId: payload.distributeurId });
         payload.client = client;
       }
     }
     console.log("payload.distributeurId ", payload.distributeurId)
     let demande = await this.createDemande(payload);
-    console.log("demande", demande)
+    console.log("demande, distributor", demande)
     //upload images
     files.images?.forEach(image => {
       console.log(image)
@@ -286,7 +295,8 @@ export class DemandeController {
     // payload.technienId = user.technicien.id;
 
     payload.status = Status.Repare;
-
+    //const demande = await this.service.getById(id);
+    //this.mailService.demandeReparation(demande.distributeur.email, demande);
     return this.service.update(id, payload);
   }
 
@@ -321,9 +331,9 @@ export class DemandeController {
       (sum, e) => sum + Number.parseFloat(e.prix.toString()),
       0,
     );
-
+    console.log("demande, hello", demande)
     await this.service.save(demande);
-
+      
     payload.status = Status.Reparation;
 
     // notify distrbuteur
@@ -331,12 +341,15 @@ export class DemandeController {
     payload.etatProduit = produit;
     let updateResult = await this.service.update(id, payload);
     const anomaliePrices = [];
+    console.log("demande, hellooo", demande, demandeToAnomalie)
     await Promise.all(
       demandeToAnomalie.map(async e => {
+        console.log("demande, hello", demande, demandeToAnomalie)
         const anomalie = await this.anomalieService.getById(e.anomalieId);
         anomaliePrices.push({ name: anomalie.nom, price: e.prix });
       })
     );
+    console.log("tamara", demande.technicien)
     //notify client
     if (demande.typeGarantie === false) {
       this.mailService.demandeDistributeurBill(demande.distributeur.email, demande, anomaliePrices);
@@ -345,7 +358,8 @@ export class DemandeController {
     this.mailService.demandeReparation(demande.distributeur.email, demande);
 
     //notify technicien
-    this.mailService.demandeReparation(demande.technicien.email, demande);
+    const technicien = await this.userService.findById(demande.technicienId)
+    this.mailService.demandeTechnicien(technicien.email, demande);
 
     return updateResult;
   }
